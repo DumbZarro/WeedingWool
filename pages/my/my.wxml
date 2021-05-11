@@ -1,0 +1,19 @@
+<view class="container">
+  <image src="/asset/icons/user4.png" class="header"/>
+  <text class="viewItems">userName</text>
+  <view class="loginPane">
+    <view class="spaceBetween">
+      <text class="viewItems">收藏</text>
+      <!-- <input class="viewItems" type="text"/> -->
+      <!-- <icon class="viewItems" type="warn"></icon> -->
+      <!-- <image src="/asset/icons/箭头.png" mode="aspectFit"></image> -->
+    </view>
+    <view>
+      <text class="viewItems">个人发布</text>
+    </view>
+    <view>
+      <text class="viewItems">意见反馈</text>
+    </view>
+    <view></view>
+  </view>
+</view>

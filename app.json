@@ -1,0 +1,48 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/my/my",
+    "pages/information/information",
+    "pages/takeaway/takeaway",
+    "pages/login/login"
+
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#B6F2BC",
+    "navigationBarTitleText": "咩咩咩？",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "color": "#686868",
+    "selectedColor": "ffffff",
+    "backgroundColor": "#B6F2BC",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/information/information",
+        "iconPath": "asset/icons/1.png",
+        "selectedIconPath": "asset/icons/1.png",
+        "text": "薅羊毛",
+        "selectedColor": "FF43A1"
+      },
+      {
+        "pagePath": "pages/takeaway/takeaway",
+        "iconPath": "asset/icons/2.png",
+        "selectedIconPath": "asset/icons/2.png",
+        "text": "外卖精选",
+        "selectedColor": "FF43A1"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "iconPath": "asset/icons/3.png",
+        "selectedIconPath": "asset/icons/3.png",
+        "text": "我的",
+        "selectedColor": "FF43A1"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
