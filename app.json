@@ -1,18 +1,17 @@
 {
-  "pages":[
-    "pages/index/index",
-    "pages/logs/logs",
+  "pages": [
     "pages/my/my",
-    "pages/information/information",
+    "pages/send/send",
     "pages/takeaway/takeaway",
-    "pages/login/login"
-
+    "pages/weedSheep/weedSheep",
+    "pages/my/feedback/feedback",
+    "pages/my/releaseAndLike/releaseAndLike"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#B6F2BC",
     "navigationBarTitleText": "咩咩咩？",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "color": "#686868",
@@ -21,7 +20,7 @@
     "borderStyle": "white",
     "list": [
       {
-        "pagePath": "pages/information/information",
+        "pagePath": "pages/weedSheep/weedSheep",
         "iconPath": "asset/icons/1.png",
         "selectedIconPath": "asset/icons/1.png",
         "text": "薅羊毛",
@@ -32,6 +31,13 @@
         "iconPath": "asset/icons/2.png",
         "selectedIconPath": "asset/icons/2.png",
         "text": "外卖精选",
+        "selectedColor": "FF43A1"
+      },
+      {
+        "pagePath": "pages/my/feedback/feedback",
+        "iconPath": "asset/icons/2.png",
+        "selectedIconPath": "asset/icons/2.png",
+        "text": "发布",
         "selectedColor": "FF43A1"
       },
       {
