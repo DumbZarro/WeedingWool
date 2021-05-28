@@ -1,0 +1,5 @@
+<!--pages/weedSheep.wxml-->
+<text>pages/weedSheep.wxml</text>
+<view>
+  <button bindtap="getUserProfile"><text>登陆</text></button>
+</view>
