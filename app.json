@@ -34,7 +34,7 @@
         "selectedColor": "FF43A1"
       },
       {
-        "pagePath": "pages/my/feedback/feedback",
+        "pagePath": "pages/send/send",
         "iconPath": "asset/icons/2.png",
         "selectedIconPath": "asset/icons/2.png",
         "text": "发布",

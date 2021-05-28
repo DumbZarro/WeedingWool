@@ -1,5 +1,5 @@
 <view class="container">
-  <image src="/asset/icons/user4.png" class="header"/>
+  <image src="" class="header"/>
   <text class="viewItems">userName</text>
   <view class="loginPane">
     <view class="spaceBetween">
@@ -11,7 +11,7 @@
     <view>
       <text class="viewItems">个人发布</text>
     </view>
-    <view>
+    <view bindtap='onTapFeedBack'>
       <text class="viewItems">意见反馈</text>
     </view>
     <view></view>

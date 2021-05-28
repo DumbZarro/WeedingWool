@@ -1,2 +1,25 @@
-<!--pages/send/send.wxml-->
-<text>pages/send/send.wxml</text>
+<view class="page-body">
+  <view>
+    <view class="textarea-wrp">
+      <textarea auto-focus="true" style="height: 30vh" placeholder="请输入你分享的好东西..." focus="true" />
+    </view>
+
+    <view class="pane">
+      <view class="sampleView">
+        <image src="/asset/image/sendAndFeedback/add.png" class="addIcon"/>
+      </view>
+
+      <view class="sampleView">
+        <text style="margin-left: 2vw"> 分类 </text>
+        <input style="margin-left: 4vw;" type="text" placeholder="薅羊毛/外卖分享" placeholder-style="font-weight : lighter"/>
+      </view>
+
+      <view class="sendButton">
+        <image src="/asset/image/sendAndFeedback/happyFace.png" mode='aspectFit'/>
+        <text>发 送</text>
+      </view>
+
+    </view>
+
+  </view>
+</view>

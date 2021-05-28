@@ -62,5 +62,13 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+
+  
+  onTapFeedBack : function(){
+      var that = this
+      wx.navigateTo({
+        url: '/pages/my/feedback/feedback'
+      })
+    }
 })
