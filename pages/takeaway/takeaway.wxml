@@ -43,23 +43,23 @@
 				<text class="info_time">{{item.createtime}}</text>
 				<text class="info_text">{{item.context}}</text>
 				<view wx:if="{{item.picturenum!=0}}">
-					<!-- TODO 处理多张图片 -->
+					<!-- TODO 处理多张图片 判断图片数量3,6,9 -->
 					<image class="info_image" src="{{item.pitureUrls[0]}}"></image>
 				</view>
 			</view>
 		</view>
 		<view class="box_bottom">
-			<view class="botton_component">
+			<view class="botton_component" bindtap="tapLike_collection" id="{{item.collectionId}}">
 				<image wx:if="{{!item.isPraise}}" class="like_img" src="../../asset/image/comment/like.png"></image>
 				<image wx:else class="like_img" src="../../asset/image/comment/liked.png"></image>
 				<text>{{item.cpraisenum}}</text>
 			</view>
-			<view class="botton_component">
-				<image class="comment_img" src="../../asset/image/comment/comment.png" bindtap="opendComment"
-					id="{{item.collectionId}}"></image>
+			<view class="botton_component" bindtap="opendComment" id="{{item.collectionId}}">
+				<image class="comment_img" src="../../asset/image/comment/comment.png"></image>
 				<text>{{item.commentnum}}</text>
 			</view>
-			<view class="botton_component">
+			<!-- 转发是无限的?转发去哪了 -->
+			<view class="botton_component" bindtap="tapShare" id="{{item.collectionId}}">
 				<image class="share_img" src="../../asset/image/comment/share.png"></image>
 				<text>{{item.sharenum}}</text>
 			</view>
@@ -83,22 +83,45 @@
 				<text class="comment_nickname">{{item.name}}</text>
 				<text class="comment_text">{{item.content}}</text>
 				<text class="comment_time">{{item.createTime}}</text>
-				<text class="toComment">回复</text>
-				<text class="expend_comment" wx:if="{{item.commentList!=null}}" bindtap="expendComment">—— 展开{{item.commentList.length}}条回复▼</text>
-				<scroll-view scroll-y class="comment_list" wx:if="">
-
-				</scroll-view>
+				<text class="toComment" bindtap="selectCommentToReply" id="{{item.commentId}}">回复</text>
+				<text class="expend_comment" wx:if="{{item.commentList!=null}}" bindtap="expendComment"
+					id="{{item.commentId}}">—— 展开{{item.commentList.length}}条回复▼</text>
+				<!-- 注意:条件渲染和循环渲染在同一个组件的时候条件渲染大部分时候会失效,解决方案:在外面套一层 -->
+				<view wx:if="{{show[item.commentId]}}" class="reply_list"> 
+					<view class="reply_box" wx:for="{{reply_array[item.commentId]}}" wx:key="commentId">
+						<!-- 会飘到上面去,干脆不要了 -->
+						<!-- <image class="reply_avatar" src="{{item.avator}}"></image> -->
+						<view class="reply_info">
+							<text class="reply_nickname">{{item.name}}</text>
+							<text class="reply_text">{{item.content}}</text>
+							<text class="comment_time">{{item.createTime}}</text>
+							<text class="toComment" bindtap="selectCommentToReply" id="{{item.commentId}}">回复</text>
+						</view>
+						<view class="commenet_like" style="margin-top:6vw">
+							<image wx:if="{{!item.isPraise}}" class="like_img" src="../../asset/image/comment/like.png"
+								bindtap="tapLike_comment" id="{{item.commentId}}"></image>
+							<image wx:else class="like_img" src="../../asset/image/comment/liked.png" bindtap="tapLike_comment"
+								id="{{item.commentId}}"></image>
+							<text>{{item.commentPraiseNum}}</text>
+						</view>
+					</view>
+				</view>
 			</view>
 			<view class="commenet_like">
-				<image wx:if="{{!item.isPraise}}" class="like_img" src="../../asset/image/comment/like.png"></image>
-				<image wx:else class="like_img" src="../../asset/image/comment/liked.png"></image>
+				<image wx:if="{{!item.isPraise}}" class="like_img" src="../../asset/image/comment/like.png"
+					bindtap="tapLike_comment" id="{{item.commentId}}"></image>
+				<image wx:else class="like_img" src="../../asset/image/comment/liked.png" bindtap="tapLike_comment"
+					id="{{item.commentId}}"></image>
 				<text>{{item.commentPraiseNum}}</text>
 			</view>
 		</view>
 	</scroll-view>
 	<view class="editor">
-		<textarea name="" id="" cols="30" rows="10" class="input" style="color:grey;text-align: center;" >留下你的精彩评论</textarea>
-		<image src="/asset/image/sendAndFeedback/happyFace.png" class="face"></image>
-		<button class="send" form-type="submit">发送</button>
+		<form bindsubmit="onSubmitTap">
+			<input name="yourComment" id="" cols="30" rows="10" class="input" style="color:grey;text-align: center;"
+				type="text" placeholder="留下你的精彩评论" foucs="auto" value="{{addtext}}"></input>
+			<image src="/asset/image/sendAndFeedback/happyFace.png" class="face"></image>
+			<button class="send" form-type="submit" disabled="{{isDisabled}}">发送</button>
+		</form>
 	</view>
 </view>

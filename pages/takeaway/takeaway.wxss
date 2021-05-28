@@ -16,10 +16,10 @@
   height: 8vh;
   /* 设置上下边框 */
   border-top-color: rgb(255, 68, 161);
-  border-top-width: 0.5vw;
+  border-top-width: 1px;
   border-top-style: solid;
   border-bottom-color: rgb(255, 68, 161);
-  border-bottom-width: 0.5vw;
+  border-bottom-width: 1px;
   border-bottom-style: solid;
   position: absolute;
   z-index: 2;
@@ -48,7 +48,7 @@
 
   border-radius: 1.5vw;
   border-color: rgb(255, 68, 161);
-  border-width: 0.75vw;
+  border-width: 2px;
   border-style: solid;
   text-align: center;
 }
@@ -75,7 +75,7 @@
   width: 20vw;
   border-radius: 1.5vw;
   border-color: rgb(255, 68, 161);
-  border-width: 0.75vw;
+  border-width: 2px;
   border-style: solid;
   background-color: rgb(242,242,242);
 }
@@ -88,15 +88,14 @@
   height: 4vw;
   border-radius: 5vw;
   border-color: rgb(255, 68, 161);
-  border-width: 0.75vw;
+  border-width: 2px;
   border-style: solid;
 }
-checkbox .wx-checkbox-input.wx-checkbox-input-checked {
-
+.big_button checkbox .wx-checkbox-input.wx-checkbox-input-checked {
   background: #FF525C;
 }
 
-checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
+.big_button checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   width: 28rpx;
   height: 28rpx;
   line-height: 28rpx;
@@ -111,7 +110,9 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
 
 .list{/*滑动框*/
   margin-top:11vh;
-  height: 71vh;
+  height: auto;
+  /* TODO 寻找合适的高度解决方案 */
+  overflow: hidden;
   width: 100vw;
   position: relative;
   z-index: 1;
@@ -124,21 +125,23 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
 }
 
 .box{
+  float: left;
   width: 86vw;
-  height: 69vw;
+  /* height: 69vw; */
   margin-left:6vw;
   margin-top:4vw;
   /* 边框 */
   border-radius: 8vw;
   border-color: rgb(255, 68, 161);
-  border-width: 1vh;
+  border-width: 3px;
   border-style: solid;
 }
 
 .box_top{
   float: left;
   width: 86vw;
-  height: 58vw;
+  margin-bottom: 5vw;
+  /* height: 58vw; */
 }
 
 .avatar{
@@ -151,7 +154,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   /* 边框 */
   border-radius: 9vw;
   border-color: rgb(255, 68, 161);
-  border-width: 0.8vh;
+  border-width: 3px;
   border-style: solid;
 }
 .info{
@@ -159,7 +162,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   margin-top:2vw;
   margin-left:4vw;
   width: 60vw;
-  height: 56vw;
+  /* height: 56vw; */
 }
 .nickname{
   display: block;
@@ -175,6 +178,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
 .info_time{
   margin-top:1vw;
   margin-left: 1vw;
+  margin-bottom: 5vw;
   display: block;
   width: 30vw;
   height: 3vw;
@@ -184,10 +188,11 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   margin-top:1vw;
   display: block;
   width: 40vw;
-  height: 25vw;
+  /* height: 25vw; */
   font-size: 3.5vw;
 }
 .info_image{
+  margin-top: 1vw;
   width: 20vw;
   height: 20vw;
   background-color: brown;
@@ -232,11 +237,11 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   border-top-left-radius: 4vw;
   border-top-right-radius: 4vw;
   border-color: rgb(255, 68, 161);
-  /* border-width: 0.8vh; */
-  border-top-width: 1vw;
+  border-width: 3px;
+  /* border-top-width: 1px; */
   border-style: solid;
   margin-top:-80vh;
-  position: absolute;
+  position: fixed;
   /* 最高是他 */
   z-index: 3;
   bottom: 0;
@@ -267,8 +272,8 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
 
 .comment_box{
   width: 98vw;
-  height: 24vh;
   margin-top:4vw;
+  display: block;
 }
 .comment_avatar{
   float: left;
@@ -280,21 +285,22 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   /* 边框 */
   border-radius: 9vw;
   border-color: rgb(255, 68, 161);
-  border-width: 0.8vh;
+  /* 其实非0.5的倍数渲染出来的效果并不好 */
+  border-width: 3px;  
   border-style: solid;
 }
 
 .comment_info{
   float: left;
   width: 70vw;
-  height: 24vh;
   margin-left: 2vw;
   margin-top:3vw;
 }
+
 .comment_nickname{
   display: block;
   padding-top: 1vw;
-  height: 4vw;
+  height: 6vw;
   width: 30vw;
   font-size: 4vw;
 }
@@ -302,8 +308,9 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   margin-top:1vw;
   display: block;
   width: 70vw;
-  height: 20vw;
+  /* height: 20vw; */
   font-size: 3.5vw;
+  word-break:break-all;
   /* font-style: italic; */
 }
 .comment_time{
@@ -313,6 +320,59 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   height: 3vw;
   font-size: 2.5vw;
 }
+/* ssssssssssssssssssssssssssssssss */
+.reply_list{
+  width: 80vw;
+}
+
+.reply_box{
+  width: 80vw;
+  margin-top:4vw;
+  height: max-content;
+  display: block;
+}
+.reply_avatar{
+  float: left;
+  width: 7vw;
+  height: 7vw;
+  background-color: brown;
+  border-radius: 9vw;
+  border-color: rgb(255, 68, 161);
+  border-width: 2px;
+  border-style: solid;
+}
+
+.reply_info{
+  float: left;
+  width: 59vw;
+  margin-left:2vw;
+}
+
+.reply_nickname{
+  display: block;
+  padding-top: 1vw;
+  height: 6vw;
+  width: 50vw;
+  font-size: 3.5vw;
+  font-weight: bolder;
+}
+.reply_text{
+  margin-left:1vw;
+  display: block;
+  width: 50vw;
+  font-size: 3vw;
+  word-break:break-all;
+}
+.reply_time{
+  margin-top:1vw;
+  margin-left: 1vw;
+  width: 30vw;
+  height: 3vw;
+  font-size: 2.5vw;
+}
+
+/* ssssssssssssssssss */
+
 
 .toComment{
   margin-left: 2vw;
@@ -354,7 +414,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   background-color: rgb(247, 242, 223);
   border-radius: 6vh;
   border-color: rgb(255, 68, 161);
-  border-width: 1vw;
+  border-width: 2px;
   border-style: solid;
 }
 .face{

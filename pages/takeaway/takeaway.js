@@ -18,11 +18,17 @@ Page({
     sliderOffset:0,
     showComment:false,
     modeselect:false,
+    feedbackSelect:null,
+    isDisabled:false,
+    addtext:"",
+    show:{},
+    reply_array:{},
   },
   onLoad: function (options) {
     let that = this;
     that.getList();
     that.opendComment();
+  
   },
   //根据条件获取许多的薅羊毛表单
   getList:function(){
@@ -34,6 +40,7 @@ Page({
       url: 'https://www.dontstayup.com:8089/collection/getAllCollections',
       method:"GET",
       data: {
+        isSheep:true,
         isRobot: that.data.isRobot,
         mode:that.data.mode,
         pageNum:that.data.pageNum,
@@ -56,68 +63,31 @@ Page({
     let that = this;
     console.log(e)
     let id = e.currentTarget.id;
-    if(id=="1"){  //使用setData才会重新渲染页面
-      that.setData({
+    if(id=="1"){  
+      console.log("111")
+      console.log(that.data.isRobot)
+      that.setData({//使用setData才会重新渲染页面
         isRobot:false
       })
-      // that.data.isRobot=false;
+      // that.data.isRobot=false; //不会重新渲染
+      console.log(that.data.isRobot)
+      that.getList();
     }else{
       that.setData({
         isRobot:true
       })
-      // that.data.isRobot=true;
+      that.getList();
+      
+      // that.data.isRobot=true;  //不会重新渲染
     }
+
     console.log(that.data.isRobot)
-    that.setData({
-      activedIndex: e.currentTarget.id,
-      sliderOffset: e.currentTarget.offsetLeft
-    })
-    
-    // 触发父组件的tab-change方法，并将当前选中的tab作为参数传递给父组件
-    that.triggerEvent('tab-change', { activedTab: e.currentTarget.id })
-  },
-  // 点击评论按钮事件
-  opendComment:function(e){
-    let that=this;
-    // console.log(e)
-    // console.log(e.currentTarget.id)
-    // let collectionId=e.currentTarget.id;
-    wx.hideTabBar({})
-    // that.getComments(collectionId)
-    that.getComments(1)
-    that.setData({
-      showComment:true
-    })  
-  },
-  // 获取一个发布信息的所有评论
-  getComments:function(collectionId){
-    let that=this;
-    request({
-      url: 'https://www.dontstayup.com:8089/comment/getComment',
-      method:"GET",
-      data: {
-        collectionId: collectionId,
-      },
-      header: {
-        'content-type': 'application/x-www-form-urlencoded',
-        'token':app.globalData.token
-      },
-    }).then(res=>{
-      // console.log("getComment res:");
-      // console.log(res);
-      console.log("comment array=")
-      console.log(res.data.data);
-      that.setData({//评论列表的数据
-        comment_array:res.data.data
-      })
-    })
-  },
-  closeComment:function(){
-    let that = this;
-    that.setData({
-      showComment:false
-    })
-    wx.showTabBar({})
+    // that.setData({
+    //   activedIndex: e.currentTarget.id,
+    //   sliderOffset: e.currentTarget.offsetLeft
+    // })
+    // // 触发父组件的tab-change方法，并将当前选中的tab作为参数传递给父组件
+    // that.triggerEvent('tab-change', { activedTab: e.currentTarget.id })
   },
   selectMode:function(){
     let that =this;
@@ -144,10 +114,199 @@ Page({
         modeselect:false,
       })
     }
-    that.getList();
+    that.getList();//刷新列表
+  },
+  // 点击评论按钮事件
+  opendComment:function(e){
+    let that=this;
+    // console.log(e)
+    // console.log(e.currentTarget.id)
+    that.setData({
+      // collectionId:e.currentTarget.id
+      collectionId:1
+    })
+      wx.hideTabBar({})
+    that.getComments(that.data.collectionId)
+    that.setData({
+      showComment:true
+    })  
+  },
+  // 获取一个发布信息的所有评论
+  getComments:function(){
+    let that=this;
+    request({
+      url: 'https://www.dontstayup.com:8089/comment/getComment',
+      method:"GET",
+      data: {
+        collectionId: that.data.collectionId,
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'token':app.globalData.token
+      },
+    }).then(res=>{
+      // console.log("getComment res:");
+      // console.log(res);
+      console.log("comment array=")
+      console.log(res.data.data);
+      that.setData({//评论列表的数据
+        comment_array:res.data.data,
+        show:{}//声明show数组
+      })
+    })
+  },
+  closeComment:function(){
+    let that = this;
+    that.setData({
+      showComment:false,
+      collectionId:null,
+    })
+    wx.showTabBar({})
   },
   expendComment:function(e){
     console.log(e)
+    let that = this;
+    let commentId= e.currentTarget.id;
+    let show_temp=that.data.show;
+    let reply_temp=that.data.reply_array;
+    show_temp[commentId]=!show_temp[commentId];
+    that.data.comment_array.forEach(element => {
+      if(element.commentId==commentId){
+        reply_temp[commentId]=element.commentList;
+      }
+    });
+    that.setData({
+      show:show_temp,
+      reply_array:reply_temp
+    })
+    // that.getComments()//刷新列表
+    console.log(that.data.show);
+    console.log(that.data.reply_array);
+    // TODO 展开回复
+  },
+  onSubmitTap(e) {
+    let that = this;
+    console.log(e.detail.value.yourComment)
+    if(e.detail.value.yourComment==""){
+      toastException("发送内容不能为空");
+      return;
+    }
+    request({
+      url: 'https://www.dontstayup.com:8089/comment/create',
+      method:"POST",
+      data: {
+        collectionId: that.data.collectionId,
+        commentParentId: that.getCommentParentId(),
+        content: e.detail.value.yourComment,
+        createTime: new Date(),
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'token':app.globalData.token
+      },
+    }).then(res => {
+      console.log(res);
+      if (res.data.resultCode === 400) {
+        toastException(res.data.msg);
+      } else if (res.data.resultCode === 200) {
+        toastSuccess("发送成功");
+        that.setData({
+          isDisabled: true,//禁止点击发送
+          addtext: "",//清空输入框
+        });
+        that.getComments()//刷新列表
+        setTimeout(function(){
+          that.setData({
+            isDisabled: false,
+          })
+        }, 1000);
+        // wx.hideKeyboard();
+      }
+    });
+  },
+  getCommentParentId:function(){
+    let that =this;
+    let commentParentId=that.data.feedbackSelect;
+    if(commentParentId==null){
+      return 0;
+    }else{
+      that.data.feedbackSelect=null;//要设置null防止多次评论串位
+      return commentParentId;
+    }
+  },selectCommentToReply:function(e){
+    let that = this;
+    console.log(e.currentTarget.id);
+    that.data.feedbackSelect=e.currentTarget.id;
+    console.log(that.data.feedbackSelect);
+    // TODO 弹出键盘输入
+  },
+  tapLike_comment:function(e){
+    console.log(e)
+    let that = this;
+    request({
+      url: 'https://www.dontstayup.com:8089/comment/love',
+      method:"POST",
+      data: {
+        commentId: e.currentTarget.id,
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'token':app.globalData.token
+      },
+    }).then(res => {
+      console.log(res);
+      if (res.data.resultCode === 400) {
+        toastException(res.data.message);
+      } else if (res.data.resultCode === 200) {
+        toastSuccess(res.data.message);
+        that.getComments()//刷新列表
+      }
+    });
+  },
+  tapLike_collection:function(e){
+    console.log(e)
+    let that = this;
+    request({
+      url: 'https://www.dontstayup.com:8089/collection/love',
+      method:"POST",
+      data: {
+        collectionId: e.currentTarget.id,
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'token':app.globalData.token
+      },
+    }).then(res => {
+      console.log(res);
+      if (res.data.resultCode === 400) {
+        toastException(res.data.message);
+      } else if (res.data.resultCode === 200) {
+        toastSuccess(res.data.message);
+        that.getList();//刷新列表
+      }
+    });
+  },
+  tapShare:function(e){
+    console.log(e)
+    let that = this;
+    request({
+      url: 'https://www.dontstayup.com:8089/collection/addShareNum',
+      method:"POST",
+      data: {
+        collectionId: e.currentTarget.id,
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'token':app.globalData.token
+      },
+    }).then(res => {
+      console.log(res);
+      if (res.data.resultCode === 400) {
+        toastException(res.data.message);
+      } else if (res.data.resultCode === 200) {
+        toastSuccess(res.data.message);
+        that.getList();//刷新列表
+      }
+    });
   }
-  
 })
