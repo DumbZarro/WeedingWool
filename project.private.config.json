@@ -1,0 +1,36 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "用户界面",
+          "pathName": "pages/my/my",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "外卖",
+          "pathName": "pages/takeaway/takeaway",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "登陆",
+          "pathName": "pages/weedSheep/weedSheep",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

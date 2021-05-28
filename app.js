@@ -1,19 +1,21 @@
-// app.js
-App({
-  onLaunch() {
-    // 展示本地存储能力
-    const logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+import {
+  request
+} from "utils/network.js"
+import {
+  toastSuccess,
+  toastException
+} from "utils/show.js"
 
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
-    })
-  },
+App({
   globalData: {
-    userInfo: null
+    code: null,
+    openId: null,
+    userInfo: null,
+    isLogin: false,
+    haveOpenId:false,
+    token:"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMjQiLCJuYW1lIjoiRG5pbHMiLCJleHAiOjE2MjI3MDE5MDV9.UklileQdNKdDhOF4J9SXfxIk-113om9CSMFT1QCXH8c"
+  },
+  onLaunch() {
+    
   }
 })

@@ -1,2 +1,104 @@
-<!--pages/takeaway/takeaway.wxml-->
-<text>pages/takeaway/takeaway.wxml</text>
+<view class="imag_contain">
+	<image src="../../asset/image/takeaway/takeaway.png" class="takeaway_imag"></image>
+</view>
+<!-- 选择栏 -->
+<view class="nav_bar">
+	<view id="1" bindtap="clickTab" class="select_tab">
+		<text class="goodGoodBody user-font">用户</text>
+		<image wx:if="{{!isRobot}}" src="../../asset/image/other/userOrMachine.png" class="underline"></image>
+	</view>
+	<view id="2" bindtap="clickTab" class="select_tab">
+		<text class="goodGoodBody machine-font">机器人</text>
+		<image wx:if="{{isRobot}}" src="../../asset/image/other/userOrMachine.png" class="underline"></image>
+	</view>
+	<view>
+		<view wx:if="{{!modeselect}}" class="small_button" bindtap="selectMode">
+			<!-- <image src="../../asset/image/other/row.png" class="button_imag"></image> -->
+			<text decode="ture">&lt;</text>
+			<!-- 转义字符需要设置decode -->
+		</view>
+		<view wx:else class="big_button">
+			<checkbox-group bindchange="checkboxChange">
+				<label class="selectLabel">
+					<checkbox value="1" checked="{{hot_check}}" />
+					<text class="goodGoodBody" style="font-size: 4vw;">热度</text>
+				</label>
+				<label class="selectLabel">
+					<checkbox value="2" checked="{{!hot_check}}" />
+					<text class="goodGoodBody" style="font-size: 4vw;">时间</text>
+				</label>
+			</checkbox-group>
+		</view>
+	</view>
+</view>
+<!-- <scroll-view class="list" scroll-y style="transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);background-color: {{activedColor}}"> -->
+<scroll-view class="list" scroll-y>
+	<view wx:for="{{info_array}}" wx:key="collectionId" class="box">
+		<view class="box_top">
+			<image wx:if="{{!isRobot}}" class="avatar" src="{{item.avator}}"></image>
+			<image wx:else class="avatar" src="/asset/image/other/machine.png"></image>
+			<view class="info">
+				<text wx:if="{{isRobot}}" class="machine_nickname">机器人</text>
+				<text wx:else class="nickname">{{item.name}}</text>
+				<text class="info_time">{{item.createtime}}</text>
+				<text class="info_text">{{item.context}}</text>
+				<view wx:if="{{item.picturenum!=0}}">
+					<!-- TODO 处理多张图片 -->
+					<image class="info_image" src="{{item.pitureUrls[0]}}"></image>
+				</view>
+			</view>
+		</view>
+		<view class="box_bottom">
+			<view class="botton_component">
+				<image wx:if="{{!item.isPraise}}" class="like_img" src="../../asset/image/comment/like.png"></image>
+				<image wx:else class="like_img" src="../../asset/image/comment/liked.png"></image>
+				<text>{{item.cpraisenum}}</text>
+			</view>
+			<view class="botton_component">
+				<image class="comment_img" src="../../asset/image/comment/comment.png" bindtap="opendComment"
+					id="{{item.collectionId}}"></image>
+				<text>{{item.commentnum}}</text>
+			</view>
+			<view class="botton_component">
+				<image class="share_img" src="../../asset/image/comment/share.png"></image>
+				<text>{{item.sharenum}}</text>
+			</view>
+		</view>
+	</view>
+</scroll-view>
+
+<!-- 评论界面 -->
+<view class="comment_window" wx:if="{{showComment}}">
+	<view class="comment_bar">
+		<view>
+			<text class="comment_number">{{comment_array.length}}条评论</text>
+		</view>
+		<image class="closs" src="/asset/image/comment/close.png" bindtap="closeComment"></image>
+	</view>
+
+	<scroll-view scroll-y class="comment_list">
+		<view class="comment_box" wx:for="{{comment_array}}" wx:key="commentId">
+			<image class="comment_avatar" src="{{item.avator}}"></image>
+			<view class="comment_info">
+				<text class="comment_nickname">{{item.name}}</text>
+				<text class="comment_text">{{item.content}}</text>
+				<text class="comment_time">{{item.createTime}}</text>
+				<text class="toComment">回复</text>
+				<text class="expend_comment" wx:if="{{item.commentList!=null}}" bindtap="expendComment">—— 展开{{item.commentList.length}}条回复▼</text>
+				<scroll-view scroll-y class="comment_list" wx:if="">
+
+				</scroll-view>
+			</view>
+			<view class="commenet_like">
+				<image wx:if="{{!item.isPraise}}" class="like_img" src="../../asset/image/comment/like.png"></image>
+				<image wx:else class="like_img" src="../../asset/image/comment/liked.png"></image>
+				<text>{{item.commentPraiseNum}}</text>
+			</view>
+		</view>
+	</scroll-view>
+	<view class="editor">
+		<textarea name="" id="" cols="30" rows="10" class="input" style="color:grey;text-align: center;" >留下你的精彩评论</textarea>
+		<image src="/asset/image/sendAndFeedback/happyFace.png" class="face"></image>
+		<button class="send" form-type="submit">发送</button>
+	</view>
+</view>
