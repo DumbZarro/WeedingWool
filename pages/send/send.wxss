@@ -1,0 +1,120 @@
+textarea {
+  width: 80vw;
+  padding: 25rpx 0;
+}
+
+.page-body {
+  padding: 20rpx 0;
+  margin-left: 7vw;
+  margin-right: 7vw;
+}
+
+.textarea-wrp {
+  padding: 0 25rpx;
+  background-color: #fff;
+}
+
+.pane {
+  /* width: 480rpx;
+  height: 420rpx; */
+  /* margin: auto auto; */
+  /* margin-top: 5%; */
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sampleView {
+  font-size: 30rpx;
+  font-weight: bold;
+  flex: 1;
+  display: flex;
+  background-color: white;
+  border-bottom: 2rpx solid #FF43A1;
+  padding: 20rpx 0;
+}
+
+
+.picture{
+  width:22vw;
+  height: 22vw;
+  background-color: white;
+  /* 外框 */
+  overflow: hidden;
+  border-radius: 2vw;
+  border-color: rgb(255, 68, 161);
+  border-width: 1px;
+  border-style: solid;
+  display: flex;
+}
+.picture_img{
+  width: 22vw;
+  height: 22vw;
+  /* 配合 mode="aspectFill" 使图片不变形*/
+  background-size: cover;
+}
+
+.add{
+  height: 16vw;
+  width: 16vw;
+  margin-left: 3vw;
+  margin-top:3vw;
+  position: absolute;
+  z-index: 1;
+}
+.change{
+  height: 6vw;
+  width: 6vw;
+  margin-left: 8vw;
+  margin-top:8vw;
+  position: absolute;
+  z-index: 1;
+}
+.sendButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: center; */
+  margin-top: 3vw;
+  /* position: relative; */
+}
+
+.sendButton>text {
+  position: relative; 
+  align-items:center; 
+  display:flex; 
+  flex-direction: row; 
+  border-radius: 5px;
+  border: solid 3rpx  #FF43A1; 
+  border-radius: 5px; 
+}
+
+.sendButton>image {
+  width: 8vw; 
+  height: 8vw; 
+  align-items:center; 
+}
+.sendButton>emoji {
+  width: 8vw; 
+  height: 8vw; 
+  align-items:center; 
+}
+.submit{
+  /* 宽高写在这里没用,写到style里 */
+  /* width: 132rpx; 
+  height: 60rpx;  */
+  display: block; 
+  box-sizing: border-box; 
+  position: relative;
+  left: 30vw;
+  
+  background-color: rgb(255, 68, 161);
+  color:rgb(247, 242, 223);
+  border-radius: 2vw;
+  padding:1px;
+  font-size: 5vw;
+}
+.submit text{
+  width:min-content;
+}

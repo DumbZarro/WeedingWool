@@ -1,0 +1,94 @@
+<view class="page-body">
+    <view class="paneTop">
+      <view class="userInfo">
+      <image class="header" src="{{avator}}"></image>
+      <text style="font-weight:bolder">{{name}}</text>
+      </view>
+    <view class="userInfo">
+      <view style="margin-right : 6vw" class="number">
+        <view style="margin-bottom: 2vw">{{focusNum}}</view>
+        <text style="font-size:small; font-weight:bolder">关注</text>
+      </view>
+      <view class="number">
+        <view style="margin-bottom: 2vw">{{praiseNum}}</view>
+        <text style="font-size:small; font-weight:bolder">获赞或收藏</text>
+      </view>
+    </view>
+  </view>
+  <!-- 选择栏 -->
+  <view class="nav_bar">
+    <view id="1" bindtap="clickTab" class="select_tab">
+      <text class="goodGoodBody user-font">收藏</text>
+    </view>
+    <view id="2" bindtap="clickTab" class="select_tab">
+      <text class="goodGoodBody machine-font">个人发布</text>
+    </view>
+  </view>
+
+  <!-- 展示页面 -->
+  <scroll-view class="list" scroll-y>
+  <!-- 如果是个人收藏 -->
+	<view wx:if="{{!isPublish}}" wx:for="{{info_array_collections}}" wx:key="collectionId" class="box">
+  <!-- <view wx:else wx:for="{{publish_array}}"  wx:key="collectionId" class="box"> -->
+		<view class="box_top">
+			<view wx:if="{{item.picturenum!=0}}">
+					<!-- TODO 处理多张图片 -->
+					<image class="info_image" src="{{item.pitureUrls[0]}}"></image>
+			</view>
+			<view class="info">
+				<text class="info_text">{{item.context}}</text>
+			</view>
+		</view>
+		<view class="box_bottom">
+			<view class="botton_component">
+        <image class="avatar" src="{{item.avator}}"></image>
+				<text class="nickname">{{item.name}}</text>
+				<image wx:if="{{!item.isPraise}}" class="like_img" src="../../asset/image/comment/like.png"></image>
+				<image wx:else class="like_img" src="../../asset/image/comment/liked.png"></image>
+				<text>{{item.cpraisenum}}</text>
+			</view>
+    </view>
+  </view>
+  <!-- </view> -->
+  <!-- 如果是个人发布 -->
+
+  <view class="box">
+		<view class="box_top">
+				<!-- TODO 处理多张图片 -->
+				<image class="info_image" src="/asset/image/releaseAndLike/picture.png"></image>
+    </view>
+		<text>这是一个梗概</text>
+		<view class="box_bottom">
+			<view class='setting'>
+        <image class="avatar" src="{{avator}}"></image>
+        <text class="nickname">{{name}}</text>
+        <image style="float:right; margin-top:1vw; width:7vw; height:7vw" src="../../../asset/image/comment/like.png"></image>
+				<!-- <image wx:if="{{!item.isPraise}}" class="like_img" src="../../asset/image/comment/like.png"></image>
+				<image wx:else class="like_img" src="../../asset/image/comment/liked.png"></image> -->
+				<text>{{item.cpraisenum}}</text>
+      </view>
+    </view>
+  </view>
+
+
+  <view class="box">
+		<view class="box_top">
+				<!-- TODO 处理多张图片 -->
+				<image class="info_image" src="/asset/image/releaseAndLike/picture.png"></image>
+    </view>
+		<text class="info_text">这是一个梗概</text>
+		<view class="box_bottom">
+			<view class="botton_component">
+        <image class="avatar" src="/asset/image/comment/liked.png"></image>
+        <text class="nickname">我的名字</text>
+        <image style="float:middle; width:7vw; height:7vw" src="../../../asset/image/comment/like.png"></image>
+				<!-- <image wx:if="{{!item.isPraise}}" class="like_img" src="../../asset/image/comment/like.png"></image>
+				<image wx:else class="like_img" src="../../asset/image/comment/liked.png"></image> -->
+				<text>{{item.cpraisenum}}</text>
+      </view>
+    </view>
+  </view>
+
+  </scroll-view>
+
+</view>

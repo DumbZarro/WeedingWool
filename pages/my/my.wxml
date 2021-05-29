@@ -1,0 +1,22 @@
+<view class="container">
+  <image src="{{avatar}}" class="header"/>
+  <text wx:if="{{!isLogin}}" class="viewItems">username</text>
+  <text wx:else class="viewItems">{{name}}</text>
+  <view class="loginPane">
+    <view class="spaceBetween">
+      <text class="viewItems" bindtap="releaseAndLike">收藏</text>
+      <!-- <input class="viewItems" type="text"/> -->
+      <!-- <icon class="viewItems" type="warn"></icon> -->
+      <!-- <image src="/asset/icons/箭头.png" mode="aspectFit"></image> -->
+    </view>
+    <view>
+      <text class="viewItems" bindtap="releaseAndLike">个人发布</text>
+    </view>
+    <view bindtap='onTapFeedBack'>
+      <text class="viewItems" bindtap="feedback">意见反馈</text>
+    </view>
+    <view wx:if="{{!isLogin}}" >
+      <button bindtap="getUserProfile">登陆</button>
+    </view>
+  </view>
+</view>

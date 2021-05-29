@@ -1,0 +1,38 @@
+<view class="page-body">
+  <form bindsubmit="send">
+    <view class="textarea-wrp" >
+      <textarea auto-focus="true" style="height: 30vh" placeholder="请输入你分享的好东西..." value="{{addtext}}"
+        maxlength="300" name="content" bindinput="onInputTextarea"></textarea>
+    </view>
+
+    <view class="pane">
+      <view class="sampleView">
+        <!-- 添加或者刷新 -->
+        <image wx:if="{{!haveImg}}" src="../../asset/image/sendAndFeedback/add.png" class="add" bindtap="bindPutImage"
+          data-index="0"></image>
+        <image wx:else src="../../asset/image/sendAndFeedback/change.png" class="change" bindtap="bindPutImage"
+          data-index="0"></image>
+        <!-- 底部的图片 -->
+        <view class="picture">
+          <image src="{{img}}" class="picture_img" mode="aspectFill"></image>
+        </view>
+      </view>
+
+      <view class="sampleView">
+        <text style="margin-left: 2vw"> 分类 </text>
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{typeArray}}" name="type" style="margin-left: 4vw;">
+						<view>{{typeArray[typeIndex]}}</view>
+				</picker>
+      </view>
+
+      <view class="sendButton">
+        <!-- <image src="/asset/image/sendAndFeedback/happyFace.png" mode='aspectFit' /> -->
+        
+        <emoji bind:clickEmoji="clickEmoji" value="{{addtext}}" />
+        <button form-type="submit" class="submit" disabled="{{isDisabled}}" style="width:18vw">发送</button>
+      </view>
+
+    </view>
+
+  </form>
+</view>

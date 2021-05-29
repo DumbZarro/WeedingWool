@@ -1,0 +1,5 @@
+/* utils/emoji/emojiFace.wxss */
+.img{
+  width: 8vw; 
+  height: 8vw; 
+}

@@ -1,0 +1,39 @@
+
+textarea {
+  width: 750rpx;
+  padding: 25rpx 0;
+}
+
+.page-body {
+  padding: 20rpx 0;
+  margin-left: 7vw;
+  margin-right: 7vw;
+}
+
+
+.pane {
+  /* width: 480rpx;
+  height: 420rpx; */
+  /* margin: auto auto; */
+  /* margin-top: 5%; */
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.pane>view {
+  font-size: 30rpx;
+  font-weight: bold;
+  flex: 1;
+  display: flex;
+  background-color: white;
+  border-bottom: 2rpx solid #FF43A1;
+  padding: 20rpx 0;
+}
+
+
+.addIcon {
+  width: 22vw;
+  height: 22vw;
+} 

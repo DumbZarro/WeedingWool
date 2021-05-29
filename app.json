@@ -1,0 +1,54 @@
+{
+  "pages": [
+    "pages/weedSheep/weedSheep",
+    "pages/my/my",
+    "pages/send/send",
+    "pages/takeaway/takeaway",
+    "pages/my/feedback/feedback",
+    "pages/my/releaseAndLike/releaseAndLike"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#B6F2BC",
+    "navigationBarTitleText": "咩咩咩？",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#686868",
+    "selectedColor": "ffffff",
+    "backgroundColor": "#B6F2BC",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/weedSheep/weedSheep",
+        "iconPath": "asset/image/bar/sheep.png",
+        "selectedIconPath": "asset/image/bar/sheep.png",
+        "text": "薅羊毛",
+        "selectedColor": "FF43A1"
+      },
+      {
+        "pagePath": "pages/takeaway/takeaway",
+        "iconPath": "asset/image/bar/takeAway.png",
+        "selectedIconPath": "asset/image/bar/takeAway.png",
+        "text": "外卖精选",
+        "selectedColor": "FF43A1"
+      },
+      {
+        "pagePath": "pages/send/send",
+        "iconPath": "asset/image/bar/send.png",
+        "selectedIconPath": "asset/image/bar/send.png",
+        "text": "发布",
+        "selectedColor": "FF43A1"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "iconPath": "asset/image/bar/user.png",
+        "selectedIconPath": "asset/image/bar/user.png",
+        "text": "我的",
+        "selectedColor": "FF43A1"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

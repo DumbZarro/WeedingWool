@@ -1,0 +1,26 @@
+<view class="page-body">
+  <view>
+    <view class="textarea-wrp">
+      <textarea auto-focus="true" style="height: 30vh" placeholder="请输入你遇到的问题或建议.." focus="true" />
+    </view>
+
+    <view class="pane">
+
+      <view>
+        <text>添加图片说明(选填)</text>
+      </view>
+
+      <view>
+        <image src="/asset/image/sendAndFeedback/add.png" class="addIcon"/>
+      </view>
+
+      <view>
+        <text>联系方式(选填)</text>
+        <input style="margin-left: 2vw;" type="text" placeholder="微信/QQ" placeholder-style="font-weight : lighter"/>
+      </view>
+
+
+    </view>
+
+  </view>
+</view>

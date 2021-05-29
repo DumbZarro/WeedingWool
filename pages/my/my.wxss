@@ -1,0 +1,53 @@
+.container {
+  border: 6rpx solid #FF43A1;
+  border-radius: 7%;
+  height: 76vh;
+  width: 76vw;
+  padding-top: 46rpx;
+  margin-left: 8vw;
+  margin-top: 12vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 2.1vw -1.1vh 0px #22B573, 3.8vw -2vh 0px #22B573, 5.6vw -2.9vh 0px #22B573, 6.3vw -3.3vh 0px #FF43A1;
+}
+
+.header {
+  width: 140rpx;
+  height: 140rpx;
+  /* margin: 200rpx auto 100rpx; */
+  margin-bottom: 4%;
+  border: 6rpx solid #FF43A1;
+  border-radius: 50%;
+  background-color: white;
+  display: block;
+}
+
+.loginPane {
+  width: 480rpx;
+  height: 420rpx;
+  /* margin: auto auto; */
+  margin-top: 15%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.loginPane>view {
+  flex: 1;
+  display: flex;
+  background-color: white;
+  border-top: 2rpx solid #FF43A1;
+  padding: 20rpx 0;
+}
+
+.viewItems {
+  font-size: 28rpx;
+  font-weight: bold;
+  padding-block: 10rpx;
+}
+
+.spaceBetween {
+  justify-content: space-between;
+}
