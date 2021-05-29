@@ -1,0 +1,2 @@
+<!--utils/emoji/emojiFace.wxml-->
+<image src="/asset/image/sendAndFeedback/happyFace.png" mode='aspectFit' class="img"/>

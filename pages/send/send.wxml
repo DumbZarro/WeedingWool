@@ -2,7 +2,7 @@
   <form bindsubmit="send">
     <view class="textarea-wrp" >
       <textarea auto-focus="true" style="height: 30vh" placeholder="请输入你分享的好东西..." value="{{addtext}}"
-        maxlength="300" name="content"></textarea>
+        maxlength="300" name="content" bindinput="onInputTextarea"></textarea>
     </view>
 
     <view class="pane">
@@ -26,7 +26,9 @@
       </view>
 
       <view class="sendButton">
-        <image src="/asset/image/sendAndFeedback/happyFace.png" mode='aspectFit' />
+        <!-- <image src="/asset/image/sendAndFeedback/happyFace.png" mode='aspectFit' /> -->
+        
+        <emoji bind:clickEmoji="clickEmoji" value="{{addtext}}" />
         <button form-type="submit" class="submit" disabled="{{isDisabled}}" style="width:18vw">发送</button>
       </view>
 

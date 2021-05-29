@@ -147,4 +147,26 @@ Page({
       typeIndex: e.detail.value
     });
   },
+
+  // 表情系统
+  clickEmoji: function(e) {
+    const {
+      detail: {
+        value
+      }
+    } = e;
+    this.setData({
+      addtext: value
+    })
+  },
+  onInputTextarea: function(e) {
+    const {
+      detail: {
+        value
+      }
+    } = e;
+    this.setData({
+      addtext: value
+    })
+  }
 })

@@ -12,40 +12,53 @@ App({
     openId: null,
     userInfo: null,
     isLogin: false,
-    haveOpenId:false,
-    token:null,
+    haveOpenId: false,
+    token: null,
   },
   onLaunch() {
-    let that=this;
+    let that = this;
     that.testToken();
   },
-  testToken:function(){
-    let that=this;
+  testToken: function () {
+    let that = this;
     wx.getStorage({
-      key:"loginInfo",
-      success:res=>{
+      key: "loginInfo",
+      success: res => {
         console.log(res);
-        that.globalData.token=res.data.token;
-        that.globalData.userInfo=res.data.userInfo;
+        that.globalData.token = res.data.token;
+        that.globalData.userInfo = res.data.userInfo;
         // TODO 测试Token是否过期
-        
-        
-        
-        
+        request({
+          url: 'https://www.dontstayup.com:8089/user/checkToken',
+          method: "POST",
+          data: {
+            token: that.globalData.token
+          },
+          header: {
+            'content-type': 'application/x-www-form-urlencoded',
+          },
+        }).then(res=>{
+          console.log(res)
+          if(res.data.resultCode==200){
+            that.haveToken();
+          }else{
+            that.noToken();
+          }
+        })
       },
-      fail:err=>{
+      fail: err => {
         console.log(err)
         that.noToken();
       }
     })
   },
-  noToken:function(){
+  noToken: function () {
     wx.switchTab({
       url: './pages/my/my',
     });
     toastException("请先授权登陆")
   },
-  haveToken:function(){
+  haveToken: function () {
     toastException("登陆成功")
   }
 })

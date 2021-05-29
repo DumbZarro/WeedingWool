@@ -95,6 +95,11 @@ textarea {
   height: 8vw; 
   align-items:center; 
 }
+.sendButton>emoji {
+  width: 8vw; 
+  height: 8vw; 
+  align-items:center; 
+}
 .submit{
   /* 宽高写在这里没用,写到style里 */
   /* width: 132rpx; 
