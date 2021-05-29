@@ -1,5 +1,5 @@
 textarea {
-  width: 750rpx;
+  width: 80vw;
   padding: 25rpx 0;
 }
 
@@ -36,11 +36,41 @@ textarea {
 }
 
 
-.addIcon {
+.picture{
+  width:22vw;
+  height: 22vw;
+  background-color: white;
+  /* 外框 */
+  overflow: hidden;
+  border-radius: 2vw;
+  border-color: rgb(255, 68, 161);
+  border-width: 1px;
+  border-style: solid;
+  display: flex;
+}
+.picture_img{
   width: 22vw;
   height: 22vw;
-} 
+  /* 配合 mode="aspectFill" 使图片不变形*/
+  background-size: cover;
+}
 
+.add{
+  height: 16vw;
+  width: 16vw;
+  margin-left: 3vw;
+  margin-top:3vw;
+  position: absolute;
+  z-index: 1;
+}
+.change{
+  height: 6vw;
+  width: 6vw;
+  margin-left: 8vw;
+  margin-top:8vw;
+  position: absolute;
+  z-index: 1;
+}
 .sendButton {
   display: flex;
   flex-direction: row;
@@ -63,8 +93,23 @@ textarea {
 .sendButton>image {
   width: 8vw; 
   height: 8vw; 
-  flex: 1; 
   align-items:center; 
-  display:flex; 
-  flex-direction: row;
+}
+.submit{
+  /* 宽高写在这里没用,写到style里 */
+  /* width: 132rpx; 
+  height: 60rpx;  */
+  display: block; 
+  box-sizing: border-box; 
+  position: relative;
+  left: 30vw;
+  
+  background-color: rgb(255, 68, 161);
+  color:rgb(247, 242, 223);
+  border-radius: 2vw;
+  padding:1px;
+  font-size: 5vw;
+}
+.submit text{
+  width:min-content;
 }

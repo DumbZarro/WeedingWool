@@ -1,19 +1,25 @@
 /* pages/takeaway/takeaway.wxss */
 .imag_contain{
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100vw;
-  height: 25vw; 
+  height: 14vh; 
 }
 .takeaway_imag{
-  margin-top: 5vw;
-  margin-left:10vw;
-  width: 80vw;
-  height: 20vw;  /* 原图566*139 为了尽可能还原比例*/
+  margin-top: 2vh;
+  width: 48vh;
+  height: 12vh;  /* 原图566*139 为了尽可能还原比例 */
 }
 .nav_bar{
-  margin-top:3vh;
-  margin-left:5vw;
+  /* border-box: 设置的边框和内边距的值是包含在width内的 */
+  box-sizing:border-box;
   width: 90vw;
   height: 8vh;
+  margin-top:3vh;
+  /* 上面俩加起来11vh */
+  /* 由于这个为了能覆盖list设置了absolute,所以不占用文档流的高度,后面list要加上11vh的高度 */
+  margin-left:5vw;
   /* 设置上下边框 */
   border-top-color: rgb(255, 68, 161);
   border-top-width: 1px;
@@ -22,6 +28,7 @@
   border-bottom-width: 1px;
   border-bottom-style: solid;
   position: absolute;
+  /* 不可以用relative代替absolute,因为这个组件展开时会变化高度, 如果是relative的话下面的组件会被挤开而不是被挡住*/
   z-index: 2;
   background-color: white;
 }
@@ -109,16 +116,18 @@
 
 
 .list{/*滑动框*/
+  /* 合适的高度解决方案:border-box 排除边框的干扰*/
+  /* 加回11vh弥补上面脱离文档流的 */
   margin-top:11vh;
-  height: auto;
-  /* TODO 寻找合适的高度解决方案 */
+  box-sizing:border-box;
+  height: 75vh;
   overflow: hidden;
   width: 100vw;
   position: relative;
   z-index: 1;
   /* 隐藏滑动条 */
-  /* width: 102vw;
-  overflow: hidden; */
+  width: 102vw;
+  /* overflow: hidden; */
   /* 选中页签时滑动的移动动画 */  
   /* -webkit-transition: -webkit-transform 0.3s;
   transition: transform 0.3s; */
@@ -196,6 +205,8 @@
   width: 20vw;
   height: 20vw;
   background-color: brown;
+  /* 配合 mode="aspectFill" 使图片不变形*/
+  background-size: cover;
 }
 .box_bottom{
   float: left;
@@ -230,7 +241,9 @@
 }
 
 .comment_window{
-  width: 98vw;
+  width: 100vw;
+  /* border-box: 设置的边框和内边距的值是包含在width内的 */
+  box-sizing:border-box;
   height: 80vh;
   float: left;
   background-color: rgb(247, 242, 223);
@@ -266,8 +279,10 @@
 
 
 .comment_list{
-  width: 98vw;
+  width: 102vw;
+  /* 宽一点隐藏滚动条 */
   height: 64vh;
+  box-sizing:border-box;
 }
 
 .comment_box{
@@ -397,7 +412,8 @@
 
 .editor{
   background-color: rgb(249, 232, 187);
-  width: 98vw;
+  width: 100%;
+  box-sizing: border-box;
   height: 8vh;
   border-color: rgb(255, 68, 161);
   border-top-width: 1vw;

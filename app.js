@@ -13,9 +13,39 @@ App({
     userInfo: null,
     isLogin: false,
     haveOpenId:false,
-    token:"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMjQiLCJuYW1lIjoiRG5pbHMiLCJleHAiOjE2MjI3MDE5MDV9.UklileQdNKdDhOF4J9SXfxIk-113om9CSMFT1QCXH8c"
+    token:null,
   },
   onLaunch() {
-    
+    let that=this;
+    that.testToken();
+  },
+  testToken:function(){
+    let that=this;
+    wx.getStorage({
+      key:"loginInfo",
+      success:res=>{
+        console.log(res);
+        that.globalData.token=res.data.token;
+        that.globalData.userInfo=res.data.userInfo;
+        // TODO 测试Token是否过期
+        
+        
+        
+        
+      },
+      fail:err=>{
+        console.log(err)
+        that.noToken();
+      }
+    })
+  },
+  noToken:function(){
+    wx.switchTab({
+      url: './pages/my/my',
+    });
+    toastException("请先授权登陆")
+  },
+  haveToken:function(){
+    toastException("登陆成功")
   }
 })

@@ -1,6 +1,7 @@
 <view class="container">
-  <image src="" class="header"/>
-  <text class="viewItems">userName</text>
+  <image src="{{avatar}}" class="header"/>
+  <text wx:if="{{!isLogin}}" class="viewItems">username</text>
+  <text wx:else class="viewItems">{{name}}</text>
   <view class="loginPane">
     <view class="spaceBetween">
       <text class="viewItems">收藏</text>
@@ -14,6 +15,8 @@
     <view bindtap='onTapFeedBack'>
       <text class="viewItems">意见反馈</text>
     </view>
-    <view></view>
+    <view wx:if="{{!isLogin}}" >
+      <button bindtap="getUserProfile">登陆</button>
+    </view>
   </view>
 </view>

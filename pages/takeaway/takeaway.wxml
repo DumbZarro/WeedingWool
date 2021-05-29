@@ -1,5 +1,5 @@
 <view class="imag_contain">
-	<image src="../../asset/image/takeaway/takeaway.png" class="takeaway_imag"></image>
+	<image src="../../asset/image/takeaway/takeaway.png" class="takeaway_imag" mode="aspectFit"></image>
 </view>
 <!-- 选择栏 -->
 <view class="nav_bar">
@@ -32,7 +32,7 @@
 	</view>
 </view>
 <!-- <scroll-view class="list" scroll-y style="transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);background-color: {{activedColor}}"> -->
-<scroll-view class="list" scroll-y>
+<scroll-view class="list" scroll-y refresher-enabled="true" bindrefresherrefresh="refresh" refresher-triggered="{{triggered}}" bindscrolltolower="onReachBottom">
 	<view wx:for="{{info_array}}" wx:key="collectionId" class="box">
 		<view class="box_top">
 			<image wx:if="{{!isRobot}}" class="avatar" src="{{item.avator}}"></image>
@@ -44,7 +44,7 @@
 				<text class="info_text">{{item.context}}</text>
 				<view wx:if="{{item.picturenum!=0}}">
 					<!-- TODO 处理多张图片 判断图片数量3,6,9 -->
-					<image class="info_image" src="{{item.pitureUrls[0]}}"></image>
+					<image class="info_image" mode="aspectFill" src="{{item.pitureUrls[0]}}" data-src="{{item.pitureUrls[0]}}" bindtap="preview" ></image>
 				</view>
 			</view>
 		</view>
