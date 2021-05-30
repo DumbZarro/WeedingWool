@@ -62,8 +62,6 @@ textarea {
   /* 配合 mode="aspectFill" 使图片不变形*/
   background-size: cover;
 }
-
-
 .image_size{
   margin-left: 47vw;
   margin-top:1vw;
@@ -72,6 +70,7 @@ textarea {
   float: right;
   right: 20vw;
 }
+
 .add{
   height: 14vw;
   width: 14vw;

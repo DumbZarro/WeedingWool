@@ -16,9 +16,8 @@ Page({
   data: {
     addtext: "",
     img: [null, null, null, null],
-    id: null,
     haveImg: [false, false, false, false],
-    imgNum: 0,
+    imgNum: 4,
     isDisabled: false,
     contact: "",
   },
@@ -133,8 +132,8 @@ Page({
                 contact: "", //清空联系方式
                 img: [null, null, null, null], //清空图片
                 haveImg: [false, false, false, false], //切换图标
-                isDisabled: false,
                 imgNum:0,//数量清零
+                isDisabled: false,
               })
             },
             fail: function (err) {

@@ -1,5 +1,6 @@
 textarea {
   width: 80vw;
+  height: 20vh;
   padding: 25rpx 0;
 }
 
@@ -15,10 +16,6 @@ textarea {
 }
 
 .pane {
-  /* width: 480rpx;
-  height: 420rpx; */
-  /* margin: auto auto; */
-  /* margin-top: 5%; */
   background: white;
   display: flex;
   flex-direction: column;
@@ -26,6 +23,7 @@ textarea {
 }
 
 .sampleView {
+  width: 80vw;
   font-size: 30rpx;
   font-weight: bold;
   flex: 1;
@@ -35,10 +33,16 @@ textarea {
   padding: 20rpx 0;
 }
 
+.picture_contain{
+  float: left;
+  width: 25vw;
+  margin-left: 2vw;
+  margin-top: 1vw;
+}
 
 .picture{
-  width:22vw;
-  height: 22vw;
+  width:25vw;
+  height: 25vw;
   background-color: white;
   /* 外框 */
   overflow: hidden;
@@ -49,25 +53,33 @@ textarea {
   display: flex;
 }
 .picture_img{
-  width: 22vw;
-  height: 22vw;
+  width:25vw;
+  height: 25vw;
   /* 配合 mode="aspectFill" 使图片不变形*/
   background-size: cover;
 }
+.image_size{
+  margin-left: 47vw;
+  margin-top:1vw;
+  font-size: 3vw;
+  font-weight: lighter;
+  float: right;
+  right: 20vw;
+}
 
 .add{
-  height: 16vw;
-  width: 16vw;
-  margin-left: 3vw;
-  margin-top:3vw;
+  height: 17vw;
+  width: 17vw;
+  margin-left: 4vw;
+  margin-top:4vw;
   position: absolute;
   z-index: 1;
 }
 .change{
-  height: 6vw;
-  width: 6vw;
-  margin-left: 8vw;
-  margin-top:8vw;
+  height: 7vw;
+  width: 7vw;
+  margin-left: 9vw;
+  margin-top:9vw;
   position: absolute;
   z-index: 1;
 }

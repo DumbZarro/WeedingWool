@@ -1,38 +1,146 @@
 <view class="page-body">
   <form bindsubmit="send">
-    <view class="textarea-wrp" >
-      <textarea style="height: 30vh" placeholder="请输入你分享的好东西..." value="{{addtext}}"
-        maxlength="300" name="content" bindinput="onInputTextarea"></textarea>
+    <view class="textarea-wrp">
+      <textarea  placeholder="请输入你分享的好东西..." value="{{addtext}}" maxlength="300" name="content"
+        bindinput="onInputTextarea"></textarea>
     </view>
 
     <view class="pane">
-      <view class="sampleView">
-        <!-- 添加或者刷新 -->
-        <image wx:if="{{!haveImg}}" src="../../asset/image/sendAndFeedback/add.png" class="add" bindtap="bindPutImage"
-          data-index="0"></image>
-        <image wx:else src="../../asset/image/sendAndFeedback/change.png" class="change" bindtap="bindPutImage"
-          data-index="0"></image>
-        <!-- 底部的图片 -->
-        <view class="picture">
-          <image src="{{img}}" class="picture_img" mode="aspectFill"></image>
+      <view class="">
+        <!-- 一张图片 -->
+        <view class="picture_contain" wx:if="{{imgNum>=0}}">
+          <!-- 添加或者刷新 -->
+          <image wx:if="{{!haveImg[0]}}" src="../../asset/image/sendAndFeedback/add.png" class="add"
+            bindtap="bindPutImage" data-index="0"></image>
+          <image wx:else src="../../asset/image/sendAndFeedback/change.png" class="change" bindtap="bindRefreshImage"
+            data-index="0"></image>
+          <!-- 底部的图片 -->
+          <view class="picture">
+            <image src="{{img[0]}}" class="picture_img" mode="aspectFill"></image>
+          </view>
+        </view>
+
+        <!-- 两张图片 -->
+        <view class="picture_contain" wx:if="{{imgNum>=1}}">
+          <!-- 添加或者刷新 -->
+          <image wx:if="{{!haveImg[1]}}" src="../../asset/image/sendAndFeedback/add.png" class="add"
+            bindtap="bindPutImage" data-index="1"></image>
+          <image wx:else src="../../asset/image/sendAndFeedback/change.png" class="change" bindtap="bindRefreshImage"
+            data-index="1"></image>
+          <!-- 底部的图片 -->
+          <view class="picture">
+            <image src="{{img[1]}}" class="picture_img" mode="aspectFill"></image>
+          </view>
+        </view>
+
+        <!-- 三张图片 -->
+        <view class="picture_contain" wx:if="{{imgNum>=2}}">
+          <!-- 添加或者刷新 -->
+          <image wx:if="{{!haveImg[2]}}" src="../../asset/image/sendAndFeedback/add.png" class="add"
+            bindtap="bindPutImage" data-index="2"></image>
+          <image wx:else src="../../asset/image/sendAndFeedback/change.png" class="change" bindtap="bindRefreshImage"
+            data-index="2"></image>
+          <!-- 底部的图片 -->
+          <view class="picture">
+            <image src="{{img[2]}}" class="picture_img" mode="aspectFill"></image>
+          </view>
+        </view>
+
+        <!-- 四张图片 -->
+        <view class="picture_contain" wx:if="{{imgNum>=3}}">
+          <!-- 添加或者刷新 -->
+          <image wx:if="{{!haveImg[3]}}" src="../../asset/image/sendAndFeedback/add.png" class="add"
+            bindtap="bindPutImage" data-index="3"></image>
+          <image wx:else src="../../asset/image/sendAndFeedback/change.png" class="change" bindtap="bindRefreshImage"
+            data-index="3"></image>
+          <!-- 底部的图片 -->
+          <view class="picture">
+            <image src="{{img[3]}}" class="picture_img" mode="aspectFill"></image>
+          </view>
+        </view>
+
+        <!-- 五张图片 -->
+        <view class="picture_contain" wx:if="{{imgNum>=4}}">
+          <!-- 添加或者刷新 -->
+          <image wx:if="{{!haveImg[4]}}" src="../../asset/image/sendAndFeedback/add.png" class="add"
+            bindtap="bindPutImage" data-index="4"></image>
+          <image wx:else src="../../asset/image/sendAndFeedback/change.png" class="change" bindtap="bindRefreshImage"
+            data-index="4"></image>
+          <!-- 底部的图片 -->
+          <view class="picture">
+            <image src="{{img[4]}}" class="picture_img" mode="aspectFill"></image>
+          </view>
+        </view>
+
+        <!-- 六张图片 -->
+        <view class="picture_contain" wx:if="{{imgNum>=5}}">
+          <!-- 添加或者刷新 -->
+          <image wx:if="{{!haveImg[5]}}" src="../../asset/image/sendAndFeedback/add.png" class="add"
+            bindtap="bindPutImage" data-index="5"></image>
+          <image wx:else src="../../asset/image/sendAndFeedback/change.png" class="change" bindtap="bindRefreshImage"
+            data-index="5"></image>
+          <!-- 底部的图片 -->
+          <view class="picture">
+            <image src="{{img[5]}}" class="picture_img" mode="aspectFill"></image>
+          </view>
+        </view>
+
+        <!-- 七张图片 -->
+        <view class="picture_contain" wx:if="{{imgNum>=6}}">
+          <!-- 添加或者刷新 -->
+          <image wx:if="{{!haveImg[6]}}" src="../../asset/image/sendAndFeedback/add.png" class="add"
+            bindtap="bindPutImage" data-index="6"></image>
+          <image wx:else src="../../asset/image/sendAndFeedback/change.png" class="change" bindtap="bindRefreshImage"
+            data-index="6"></image>
+          <!-- 底部的图片 -->
+          <view class="picture">
+            <image src="{{img[6]}}" class="picture_img" mode="aspectFill"></image>
+          </view>
+        </view>
+
+        <!-- 八张图片 -->
+        <view class="picture_contain" wx:if="{{imgNum>=7}}">
+          <!-- 添加或者刷新 -->
+          <image wx:if="{{!haveImg[7]}}" src="../../asset/image/sendAndFeedback/add.png" class="add"
+            bindtap="bindPutImage" data-index="7"></image>
+          <image wx:else src="../../asset/image/sendAndFeedback/change.png" class="change" bindtap="bindRefreshImage"
+            data-index="7"></image>
+          <!-- 底部的图片 -->
+          <view class="picture">
+            <image src="{{img[7]}}" class="picture_img" mode="aspectFill"></image>
+          </view>
+        </view>
+
+        <!-- 九张图片 -->
+        <view class="picture_contain" wx:if="{{imgNum>=8}}">
+          <!-- 添加或者刷新 -->
+          <image wx:if="{{!haveImg[8]}}" src="../../asset/image/sendAndFeedback/add.png" class="add"
+            bindtap="bindPutImage" data-index="8"></image>
+          <image wx:else src="../../asset/image/sendAndFeedback/change.png" class="change" bindtap="bindRefreshImage"
+            data-index="8"></image>
+          <!-- 底部的图片 -->
+          <view class="picture">
+            <image src="{{img[8]}}" class="picture_img" mode="aspectFill"></image>
+          </view>
         </view>
       </view>
 
-      <view class="sampleView">
-        <text style="margin-left: 2vw"> 分类 </text>
-        <picker bindchange="bindPickerChange" value="{{index}}" range="{{typeArray}}" name="type" style="margin-left: 4vw;">
-						<view>{{typeArray[typeIndex]}}</view>
-				</picker>
-      </view>
+        <view class="sampleView">
+          <text style="margin-left: 2vw"> 分类 </text>
+          <picker bindchange="bindPickerChange" value="{{index}}" range="{{typeArray}}" name="type"
+            style="margin-left: 4vw;">
+            <view>{{typeArray[typeIndex]}}</view>
+          </picker>
+        </view>
 
-      <view class="sendButton">
-        <!-- <image src="/asset/image/sendAndFeedback/happyFace.png" mode='aspectFit' /> -->
-        
-        <emoji bind:clickEmoji="clickEmoji" value="{{addtext}}" />
-        <button form-type="submit" class="submit" disabled="{{isDisabled}}" style="width:18vw">发送</button>
-      </view>
+        <view class="sendButton">
+          <!-- <image src="/asset/image/sendAndFeedback/happyFace.png" mode='aspectFit' /> -->
 
-    </view>
+          <emoji bind:clickEmoji="clickEmoji" value="{{addtext}}" />
+          <button form-type="submit" class="submit" disabled="{{isDisabled}}" style="width:18vw">发送</button>
+        </view>
+
+      </view>
 
   </form>
 </view>
