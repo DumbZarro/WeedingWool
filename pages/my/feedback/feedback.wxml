@@ -1,26 +1,89 @@
 <view class="page-body">
-  <view>
+  <form bindsubmit="send">
     <view class="textarea-wrp">
-      <textarea auto-focus="true" style="height: 30vh" placeholder="请输入你遇到的问题或建议.." focus="true" />
+      <textarea placeholder="请输入你遇到的问题或建议.." value="{{addtext}}" maxlength="400" name="advice"
+        bindinput="onInputTextarea"></textarea>
     </view>
-
+    <text class="text_size">{{addtext.length}}/400 </text>
     <view class="pane">
 
-      <view>
+      <view class="sampleView">
         <text>添加图片说明(选填)</text>
+        <!-- 计数图片 -->
+        <text class="image_size">{{imgNum}}/4 </text>
       </view>
 
-      <view>
-        <image src="/asset/image/sendAndFeedback/add.png" class="addIcon"/>
+      <view class="sampleView"> 
+        <!-- 一张图片 -->
+        <view class="picture_contain" wx:if="{{imgNum>=0}}">
+          <!-- 添加或者刷新 -->
+          <image wx:if="{{!haveImg[0]}}" src="../../../asset/image/sendAndFeedback/add.png" class="add"
+            bindtap="bindPutImage" data-index="0"></image>
+          <image wx:else src="../../../asset/image/sendAndFeedback/change.png" class="change" bindtap="bindRefreshImage"
+            data-index="0"></image>
+          <!-- 底部的图片 -->
+          <view class="picture">
+            <image src="{{img[0]}}" class="picture_img" mode="aspectFill"></image>
+          </view>
+        </view>
+
+        <!-- 两张图片 -->
+        <view class="picture_contain" wx:if="{{imgNum>=1}}">
+          <!-- 添加或者刷新 -->
+          <image wx:if="{{!haveImg[1]}}" src="../../../asset/image/sendAndFeedback/add.png" class="add"
+            bindtap="bindPutImage" data-index="1"></image>
+          <image wx:else src="../../../asset/image/sendAndFeedback/change.png" class="change" bindtap="bindRefreshImage"
+            data-index="1"></image>
+          <!-- 底部的图片 -->
+          <view class="picture">
+            <image src="{{img[1]}}" class="picture_img" mode="aspectFill"></image>
+          </view>
+        </view>
+
+        <!-- 三张图片 -->
+        <view class="picture_contain" wx:if="{{imgNum>=2}}">
+          <!-- 添加或者刷新 -->
+          <image wx:if="{{!haveImg[2]}}" src="../../../asset/image/sendAndFeedback/add.png" class="add"
+            bindtap="bindPutImage" data-index="2"></image>
+          <image wx:else src="../../../asset/image/sendAndFeedback/change.png" class="change" bindtap="bindRefreshImage"
+            data-index="2"></image>
+          <!-- 底部的图片 -->
+          <view class="picture">
+            <image src="{{img[2]}}" class="picture_img" mode="aspectFill"></image>
+          </view>
+        </view>
+
+        <!-- 四张图片 -->
+        <view class="picture_contain" wx:if="{{imgNum>=3}}">
+          <!-- 添加或者刷新 -->
+          <image wx:if="{{!haveImg[3]}}" src="../../../asset/image/sendAndFeedback/add.png" class="add"
+            bindtap="bindPutImage" data-index="3"></image>
+          <image wx:else src="../../../asset/image/sendAndFeedback/change.png" class="change" bindtap="bindRefreshImage"
+            data-index="3"></image>
+          <!-- 底部的图片 -->
+          <view class="picture">
+            <image src="{{img[3]}}" class="picture_img" mode="aspectFill"></image>
+          </view>
+        </view>
       </view>
 
-      <view>
-        <text>联系方式(选填)</text>
-        <input style="margin-left: 2vw;" type="text" placeholder="微信/QQ" placeholder-style="font-weight : lighter"/>
+      
+
+
+      <view class="sampleView">
+        <text style="padding-top:1vw;">联系方式(选填):</text>
+        <input style="margin-left: 2vw;" type="text" placeholder="微信/QQ" placeholder-style="font-weight : lighter;"
+          name="contact" value="{{contact}}" />
       </view>
 
+      <view class="sendButton" style="border:none;">
+        <!-- <image src="/asset/image/sendAndFeedback/happyFace.png" mode='aspectFit' /> -->
+
+        <emoji bind:clickEmoji="clickEmoji" value="{{addtext}}" />
+        <button form-type="submit" class="submit" disabled="{{isDisabled}}" style="width:18vw">发送</button>
+      </view>
 
     </view>
 
-  </view>
+  </form>
 </view>

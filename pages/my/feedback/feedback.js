@@ -1,66 +1,194 @@
 // pages/my/feedback/feedback.js
+import {
+  request,
+  throttle
+} from "../../../utils/network.js"
+import {
+  toastSuccess,
+  toastException
+} from "../../../utils/show.js"
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    addtext: "",
+    img: [null, null, null, null],
+    id: null,
+    haveImg: [false, false, false, false],
+    imgNum: 0,
+    isDisabled: false,
+    contact: "",
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
 
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
-
+    if (app.globalData.token == null) {
+      wx.switchTab({
+        url: '../my/my',
+      });
+      toastException("请先授权登陆")
+    }
+  },
+  bindPutImage: function (e) {
+    console.log(e)
+    let that = this;
+    let index = parseInt(e.currentTarget.dataset.index); //图片的索引,记得转数字!
+    wx.chooseImage({
+      count: 4 - that.data.imgNum, // 根据imgNum动态设置
+      sizeType: ['original', 'compressed'],
+      sourceType: ['camera', 'album'],
+      success(res) {
+        console.log(res)
+        let tempFilePaths = res.tempFilePaths;
+        let size = res.tempFilePaths.length;
+        let newImg = that.data.img;
+        let newHaveImg = that.data.haveImg;
+        for (let i = 0; i < size; i++) { //更新图片列表
+          newImg[index + i] = tempFilePaths[i];
+          newHaveImg[index + i] = true;
+        }
+        console.log(newImg);
+        console.log(newHaveImg);
+        that.setData({
+          img: newImg,
+          // 在wxml的渲染规则下index一定等于imgNum+1
+          // imgNum: index, //这样应该也行
+          imgNum: that.data.imgNum + size,
+          haveImg: newHaveImg,
+        });
+        toastSuccess("图片上传成功!");
+      }
+    })
+  },
+  //刷新图片只能选一张
+  bindRefreshImage: function (e) {
+    console.log(e)
+    let that = this;
+    let index = e.currentTarget.dataset.index; //图片的索引
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['camera', 'album'],
+      success(res) {
+        console.log(res)
+        let tempFilePaths = res.tempFilePaths; //数组形式
+        let newImg = that.data.img;
+        newImg[index] = tempFilePaths[0]; //更新图片列表
+        that.setData({
+          img: newImg,
+          imgNum: that.data.imgNum,
+        });
+        toastSuccess("图片上传成功!");
+      }
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
+  send: throttle(function (e) {
+    console.log(e)
+    let that = this;
+    if (e.detail.value.advice == null) {
+      toastException("不能发布空的内容!")
+      return;
+    }
+    that.setData({
+      isDisabled: true
+    })
+    request({
+      url: 'https://www.dontstayup.com:8089/feedback/create',
+      method: "POST",
+      data: {
+        advice: e.detail.value.advice,
+        contact: e.detail.value.contact,
+        pictureNum: that.data.imgNum,
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'token': app.globalData.token
+      },
+    }).then(res => {
+      console.log(res)
+      let cookie = res.header['Set-Cookie'];
+      console.log(cookie);
+      if (that.data.imgNum != 0) { // 有图片
+        for(let i=0;i<that.data.imgNum;i++){
+          console.log(that.data.img[i])
+          wx.uploadFile({
+            url: 'https://www.dontstayup.com:8089/feedback/upload',
+            filePath: that.data.img[i],
+            name: 'file',
+            header: {
+              'content-type': "multipart/form-data",
+              'token': app.globalData.token,
+              'cookie': cookie
+            },
+            success: function (res) {
+              console.log(res);
+              toastSuccess("发布成功!")
+              that.setData({
+                addtext: "", //清空输入框
+                contact: "", //清空联系方式
+                img: [null, null, null, null], //清空图片
+                haveImg: [false, false, false, false], //切换图标
+                isDisabled: false,
+                imgNum:0,//数量清零
+              })
+            },
+            fail: function (err) {
+              console.log(err);
+              toastException("图片发布失败")
+              that.setData({
+                // addtext: "",//清空输入框
+                // img:null,//清空图片
+                isDisabled: false
+              })
+            }
+          })
+        }
+      } else { // 无图片
+        toastSuccess("内容发布成功!")
+        that.setData({
+          addtext: "", //清空输入框
+          contact: "", //清空联系方式
+          img: [null, null, null, null], //清空图片
+          haveImg: [false, false, false, false], //切换图标
+          imgNum:0,//数量清零
+          isDisabled: false,
+          
+        })
+      }
+    }).catch(err => {
+      toastException("发布失败,请重试");
+      that.setData({
+        // addtext: "",//清空输入框
+        // img:null,//清空图片
+        isDisabled: false
+      })
+    })
+  }, 1000),
 
+  // 表情系统
+  clickEmoji: function (e) {
+    const {
+      detail: {
+        value
+      }
+    } = e;
+    this.setData({
+      addtext: value
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  onInputTextarea: function (e) {
+    const {
+      detail: {
+        value
+      }
+    } = e;
+    this.setData({
+      addtext: value
+    })
   }
 })

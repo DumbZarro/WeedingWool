@@ -1,7 +1,7 @@
 <view class="page-body">
   <form bindsubmit="send">
     <view class="textarea-wrp" >
-      <textarea auto-focus="true" style="height: 30vh" placeholder="请输入你分享的好东西..." value="{{addtext}}"
+      <textarea style="height: 30vh" placeholder="请输入你分享的好东西..." value="{{addtext}}"
         maxlength="300" name="content" bindinput="onInputTextarea"></textarea>
     </view>
 

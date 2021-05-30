@@ -35,6 +35,18 @@
           "pathName": "pages/send/send",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "反馈",
+          "pathName": "pages/my/feedback/feedback",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "收藏发布",
+          "pathName": "pages/my/releaseAndLike/releaseAndLike",
+          "query": "",
+          "scene": null
         }
       ]
     }
