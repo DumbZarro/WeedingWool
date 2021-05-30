@@ -1,1 +1,170 @@
-/* pages/my/releaseAndLike/releaseAndLike.wxss */
+.page-body {
+  padding: 0rpx;
+  width: 100%;
+  height: 100%;
+  background-repeat:no-repeat; 
+  -moz-background-size:100% 100%;
+  background-size:contain;
+  /* background-image: url(); */
+} 
+
+
+.userInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.userInfo>text {
+  margin-left: 4vw;
+}
+
+.header {
+  width: 18vw;
+  height: 18vw;
+  /* margin: 200rpx auto 100rpx; */
+  margin-bottom: 4%;
+  border: 6rpx solid #FF43A1;
+  border-radius: 50%;
+  background-color: white;
+  display: block;
+}
+
+.setting{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: center; */
+}
+
+.number {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pane {
+  /* width: 480rpx;
+  height: 420rpx; */
+  /* margin: auto auto; */
+  /* margin-top: 5%; */
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.nav_bar{
+  margin-top:3vh;
+  margin-left:5vw;
+  width: 90vw;
+  height: 5vh;
+  /* 设置边框 */
+  border-top-color: rgb(255, 68, 161);
+  border-top-width: 0.5vw;
+  border-top-style: solid;
+  position: absolute;
+  z-index: 2;
+  background-color: white;
+}
+
+.select_tab{
+  float: left;
+  margin-left: 16vw;
+  margin-top: 3vw;
+  width: 20vw;
+  text-align: center;
+}
+
+.list{/*滑动框*/
+  margin-top:11vh;
+  height: 71vh;
+  width: 100vw;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  /* 隐藏滑动条 */
+  /* width: 102vw;
+  overflow: hidden; */
+  /* 选中页签时滑动的移动动画 */  
+  /* -webkit-transition: -webkit-transform 0.3s;
+  transition: transform 0.3s; */
+}
+
+.box{
+  width: 45vw;
+  height: 60vw;
+  margin-left:4vw;
+  margin-top:1vw;
+  /* 边框 */
+  border-radius: 4vw;
+  border-color: rgb(255, 68, 161);
+  border-width: 5rpx;
+  border-style: solid;
+}
+
+.box_top{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.info_image{
+  margin-top: 1vw;
+  width: 95%;
+  height: 44vw;
+  background-color: brown;
+}
+
+.avatar{
+  float: left;
+  /* margin-top:2vw; */
+  /* margin-left:4vw; */
+  width: 7vw;
+  height: 7vw;
+  background-color: brown;
+  /* 边框 */
+  border-radius: 50%;
+  border-color: rgb(255, 68, 161);
+  border-width: 0.8vw;
+  border-style: solid;
+}
+
+.nickname{
+  font-size: 3vw;
+}
+
+.box_bottom{
+  float: left;
+  width: 45vw;
+  height: 11vw;
+}
+
+/* .botton_component{
+  margin-left:12vw;
+  margin-right:11vw;
+  margin-top:1.5vw;
+  float: left;
+  height: 8vw;
+  width: 5vw;
+  font-size:3vw;
+  text-align: center;
+} */
+
+
+
+.paneTop {
+  margin-top : 8vw;
+  margin-left : 6vw;
+  /* background-image:url(); */
+}
+
+
+/* 字由棒棒体 */
+.goodGoodBody{
+  font-family: 'YS HelloFont BangBangTi';
+  font-size: 4vw;
+  color: rgb(255, 68, 161);
+}

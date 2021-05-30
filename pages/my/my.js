@@ -78,7 +78,11 @@ Page({
                 })
                 console.log("app.globalData.token=")
                 console.log(app.globalData.token)
-                
+                that.setData({
+                  isLogin:true,
+                  name:app.globalData.userInfo.nickName,
+                  avatar:app.globalData.userInfo.avatarUrl
+                })
               })
             }
           }
@@ -86,4 +90,14 @@ Page({
       }
     }) 
   },
+  releaseAndLike:function(){
+    wx.navigateTo({
+      url: './releaseAndLike/releaseAndLike',
+    })
+  },
+  feedback:function(){
+    wx.navigateTo({
+      url: './feedback/feedback',
+    })
+  }
 })
