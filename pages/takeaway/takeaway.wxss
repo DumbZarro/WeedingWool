@@ -1,3 +1,5 @@
+@import "takeaway.skeleton.wxss";
+
 /* pages/takeaway/takeaway.wxss */
 .imag_contain{
   display: flex;
@@ -13,7 +15,7 @@
 }
 .nav_bar{
   /* border-box: 设置的边框和内边距的值是包含在width内的 */
-  box-sizing:border-box;
+
   width: 90vw;
   height: 8vh;
   margin-top:3vh;
@@ -156,7 +158,7 @@
 .avatar{
   float: left;
   margin-top:2vw;
-  margin-left:4vw;
+  margin-left:2vw;
   width:9vw;
   height: 9vw;
   background-color: brown;
@@ -169,8 +171,8 @@
 .info{
   float: left;
   margin-top:2vw;
-  margin-left:4vw;
-  width: 60vw;
+  margin-left:2vw;
+  width: 64vw;
   /* height: 56vw; */
 }
 .nickname{
@@ -201,22 +203,49 @@
   font-size: 3.5vw;
 }
 .info_image{
+  float: left;
   margin-top: 1vw;
+  margin-right:1vw;
   width: 20vw;
   height: 20vw;
   background-color: brown;
   /* 配合 mode="aspectFill" 使图片不变形*/
   background-size: cover;
 }
+/* 特殊处理只有一张图片的时候 */
+.info_image_one{
+  float: left;
+  margin-top: 1vw;
+  margin-right:1vw;
+  width: 62vw;
+  /* 和四张图的对齐 */
+  background-color: brown;
+  max-height:107vw;
+  /* 最多支持16:9图片的竖放,长截屏则会压缩 */
+  /* 配合 mode="widthFix" 使图片不变形*/
+  /* background-size: cover; */
+}
+/* 特殊处理有四张图片的时候 */
+.info_image_four{
+  float: left;
+  margin-top: 1vw;
+  margin-right:1vw;
+  width: 30.5vw;
+  height: 30.5vw;
+  background-color: brown;
+  /* 配合 mode="aspectFill" 使图片不变形*/
+  background-size: cover;
+}
+
 .box_bottom{
   float: left;
   width: 86vw;
   height: 11vw;
 }
 .botton_component{
-  margin-left:12vw;
-  margin-right:11vw;
-  margin-top:1.5vw;
+  margin-left:15vw;
+  margin-right:8.5vw;
+  margin-top:1vw;
   float: left;
   height: 8vw;
   width: 5vw;
@@ -318,6 +347,7 @@
   height: 6vw;
   width: 30vw;
   font-size: 4vw;
+  font-weight: bolder;
 }
 .comment_text{
   margin-top:1vw;
@@ -343,8 +373,13 @@
 .reply_box{
   width: 80vw;
   margin-top:4vw;
-  height: max-content;
-  display: block;
+  min-height: 10vh;
+  /* height: max-content; */
+  /* display: block; */
+}
+.reply_avatar_contain{
+  width: 30vw;
+  /* 配合.reply_box 的min height防止头像飘到上一行;我也不知道为什么display:block;不起作用 */
 }
 .reply_avatar{
   float: left;
@@ -359,7 +394,7 @@
 
 .reply_info{
   float: left;
-  width: 59vw;
+  width: 60vw;
   margin-left:2vw;
 }
 
@@ -373,8 +408,9 @@
 }
 .reply_text{
   margin-left:1vw;
+  margin-top:0;
   display: block;
-  width: 50vw;
+  width: 55vw;
   font-size: 3vw;
   word-break:break-all;
 }
@@ -392,6 +428,8 @@
 .toComment{
   margin-left: 2vw;
   font-size: 3vw;
+  /* color: rgb(255, 68, 161); */
+  color: rgb(255, 68, 161);
 }
 .expend_comment{
   margin-left: 1vw;

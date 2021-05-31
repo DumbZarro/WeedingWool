@@ -23,13 +23,14 @@ textarea {
 }
 
 .sampleView {
-  width: 80vw;
+  /* margin-left: 10vw; */
+  width: 86vw;
   font-size: 30rpx;
   font-weight: bold;
   flex: 1;
   display: flex;
   background-color: white;
-  border-bottom: 2rpx solid #FF43A1;
+  border-bottom: 2px solid #FF43A1;
   padding: 20rpx 0;
 }
 
@@ -48,7 +49,7 @@ textarea {
   overflow: hidden;
   border-radius: 2vw;
   border-color: rgb(255, 68, 161);
-  border-width: 1px;
+  border-width: 2px;
   border-style: solid;
   display: flex;
 }
@@ -68,18 +69,26 @@ textarea {
 }
 
 .add{
-  height: 17vw;
-  width: 17vw;
-  margin-left: 4vw;
-  margin-top:4vw;
+  height: 11vw;
+  width: 11vw;
+  margin-left: 7vw;
+  margin-top:7vw;
   position: absolute;
   z-index: 1;
 }
 .change{
   height: 7vw;
   width: 7vw;
-  margin-left: 9vw;
-  margin-top:9vw;
+  margin-left: 10vw;
+  margin-top:10vw;
+  position: absolute;
+  z-index: 1;
+}
+.sub{
+  height: 6vw;
+  width: 6vw;
+  margin-left: 19vw;
+  margin-top: 1vw;
   position: absolute;
   z-index: 1;
 }

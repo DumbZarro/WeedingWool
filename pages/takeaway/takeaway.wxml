@@ -1,8 +1,11 @@
+<import src="takeaway.skeleton.wxml" />
+<template is="skeleton" wx-if="{{loading}}" />
+
 <view class="imag_contain">
 	<image src="../../asset/image/takeaway/takeaway.png" class="takeaway_imag" mode="aspectFit"></image>
 </view>
 <!-- 选择栏 -->
-<view class="nav_bar">
+<view class="nav_bar" wx-if="{{!loading}}">
 	<view id="1" bindtap="clickTab" class="select_tab">
 		<text class="goodGoodBody user-font">用户</text>
 		<image wx:if="{{!isRobot}}" src="../../asset/image/other/userOrMachine.png" class="underline"></image>
@@ -17,22 +20,34 @@
 			<text decode="ture">&lt;</text>
 			<!-- 转义字符需要设置decode -->
 		</view>
-		<view wx:else class="big_button">
-			<checkbox-group bindchange="checkboxChange">
+		<view wx:else class="big_button" bindtap="selectMode">
+			<!-- 不好用,不知道它的value是什么逻辑 -->
+			<!-- <checkbox-group bindchange="checkboxChange">
 				<label class="selectLabel">
 					<checkbox value="1" checked="{{hot_check}}" />
 					<text class="goodGoodBody" style="font-size: 4vw;">热度</text>
 				</label>
 				<label class="selectLabel">
-					<checkbox value="2" checked="{{!hot_check}}" />
+					<checkbox  checked="{{!hot_check}}" />
 					<text class="goodGoodBody" style="font-size: 4vw;">时间</text>
+				</label>
+			</checkbox-group> -->
+			<checkbox-group>
+				<label class="selectLabel">
+					<checkbox  id="1" checked="{{!hot_check}}" bindtap="checkboxChange"/>
+					<text class="goodGoodBody" style="font-size: 4vw;">时间</text>
+				</label>
+				<label class="selectLabel">
+					<checkbox id="2" checked="{{hot_check}}" bindtap="checkboxChange"/>
+					<text class="goodGoodBody" style="font-size: 4vw;">热度</text>
 				</label>
 			</checkbox-group>
 		</view>
 	</view>
 </view>
 <!-- <scroll-view class="list" scroll-y style="transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);background-color: {{activedColor}}"> -->
-<scroll-view class="list" scroll-y refresher-enabled="true" bindrefresherrefresh="refresh" refresher-triggered="{{triggered}}" bindscrolltolower="onReachBottom">
+<scroll-view class="list" scroll-y refresher-enabled="true" bindrefresherrefresh="refresh"
+	refresher-triggered="{{triggered}}" bindscrolltolower="onReachBottom">
 	<view wx:for="{{info_array}}" wx:key="collectionId" class="box">
 		<view class="box_top">
 			<image wx:if="{{!isRobot}}" class="avatar" src="{{item.avator}}"></image>
@@ -43,9 +58,88 @@
 				<text class="info_time">{{item.createtime}}</text>
 				<text class="info_text">{{item.context}}</text>
 				<view wx:if="{{item.picturenum!=0}}">
-					<!-- TODO 处理多张图片 判断图片数量3,6,9 -->
-					<image class="info_image" mode="aspectFill" src="{{item.pitureUrls[0]}}" data-src="{{item.pitureUrls[0]}}" bindtap="preview" ></image>
+					<!-- 特殊处理:一张图片 -->
+					<view wx:if="{{item.picturenum==1}}">
+						<image class="info_image_one" mode="widthFix" src="{{item.pitureUrls[0]}}" data-src="{{item.pitureUrls[0]}}"
+							bindtap="preview"></image>
+					</view>
+					<!-- 特殊处理:四张图片 -->
+					<view wx:elif="{{item.picturenum==4}}">
+						<!-- 一张图片 -->
+						<view wx:if="{{item.picturenum>0}}">
+							<image class="info_image_four" mode="aspectFill" src="{{item.pitureUrls[0]}}" data-src="{{item.pitureUrls[0]}}"
+								bindtap="preview"></image>
+						</view>
+						<!-- 两张图片 -->
+						<view wx:if="{{item.picturenum>1}}">
+							<image class="info_image_four" mode="aspectFill" src="{{item.pitureUrls[1]}}" data-src="{{item.pitureUrls[1]}}"
+								bindtap="preview"></image>
+						</view>
+						<!-- 三张图片 -->
+						<view wx:if="{{item.picturenum>2}}">
+							<image class="info_image_four" mode="aspectFill" src="{{item.pitureUrls[2]}}" data-src="{{item.pitureUrls[2]}}"
+								bindtap="preview"></image>
+						</view>
+						<!-- 四张图片 -->
+						<view wx:if="{{item.picturenum>3}}">
+							<image class="info_image_four" mode="aspectFill" src="{{item.pitureUrls[3]}}" data-src="{{item.pitureUrls[3]}}"
+								bindtap="preview"></image>
+						</view>
+						<!-- 结束 -->
+					</view>
+					<!-- 一般: 九宫格式 -->
+					<view wx:else>
+						<!-- 一张图片 -->
+						<view wx:if="{{item.picturenum>0}}">
+							<image class="info_image" mode="aspectFill" src="{{item.pitureUrls[0]}}" data-src="{{item.pitureUrls[0]}}"
+								bindtap="preview"></image>
+						</view>
+						<!-- 两张图片 -->
+						<view wx:if="{{item.picturenum>1}}">
+							<image class="info_image" mode="aspectFill" src="{{item.pitureUrls[1]}}" data-src="{{item.pitureUrls[1]}}"
+								bindtap="preview"></image>
+						</view>
+						<!-- 三张图片 -->
+						<view wx:if="{{item.picturenum>2}}">
+							<image class="info_image" mode="aspectFill" src="{{item.pitureUrls[2]}}" data-src="{{item.pitureUrls[2]}}"
+								bindtap="preview"></image>
+						</view>
+						<!-- 四张图片 -->
+						<view wx:if="{{item.picturenum>3}}">
+							<image class="info_image" mode="aspectFill" src="{{item.pitureUrls[3]}}" data-src="{{item.pitureUrls[3]}}"
+								bindtap="preview"></image>
+						</view>
+						<!-- 五张图片 -->
+						<view wx:if="{{item.picturenum>4}}">
+							<image class="info_image" mode="aspectFill" src="{{item.pitureUrls[4]}}" data-src="{{item.pitureUrls[4]}}"
+								bindtap="preview"></image>
+						</view>
+						<!-- 六张图片 -->
+						<view wx:if="{{item.picturenum>5}}">
+							<image class="info_image" mode="aspectFill" src="{{item.pitureUrls[5]}}" data-src="{{item.pitureUrls[5]}}"
+								bindtap="preview"></image>
+						</view>
+						<!-- 七张图片 -->
+						<view wx:if="{{item.picturenum>6}}">
+							<image class="info_image" mode="aspectFill" src="{{item.pitureUrls[6]}}" data-src="{{item.pitureUrls[6]}}"
+								bindtap="preview"></image>
+						</view>
+						<!-- 八张图片 -->
+						<view wx:if="{{item.picturenum>7}}">
+							<image class="info_image" mode="aspectFill" src="{{item.pitureUrls[7]}}" data-src="{{item.pitureUrls[7]}}"
+								bindtap="preview"></image>
+						</view>
+						<!-- 九张图片 -->
+						<view wx:if="{{item.picturenum>8}}">
+							<image class="info_image" mode="aspectFill" src="{{item.pitureUrls[8]}}" data-src="{{item.pitureUrls[8]}}"
+								bindtap="preview"></image>
+						</view>
+						<!-- 结束 -->
+					</view>
+
 				</view>
+
+
 			</view>
 		</view>
 		<view class="box_bottom">
@@ -71,7 +165,8 @@
 <view class="comment_window" wx:if="{{showComment}}">
 	<view class="comment_bar">
 		<view>
-			<text class="comment_number">{{comment_array.length}}条评论</text>
+			<text class="comment_number" wx:if="{{comment_array==null}}">暂时没有评论哦</text>
+			<text class="comment_number" wx:else>{{comment_array.length}}条评论</text>
 		</view>
 		<image class="closs" src="/asset/image/comment/close.png" bindtap="closeComment"></image>
 	</view>
@@ -83,21 +178,26 @@
 				<text class="comment_nickname">{{item.name}}</text>
 				<text class="comment_text">{{item.content}}</text>
 				<text class="comment_time">{{item.createTime}}</text>
-				<text class="toComment" bindtap="selectCommentToReply" id="{{item.commentId}}">回复</text>
+				<text class="toComment" bindtap="selectCommentToReply" id="{{item.commentId}}" data-parentId="{{item.commentParentId}}">回复</text>
 				<text class="expend_comment" wx:if="{{item.commentList!=null}}" bindtap="expendComment"
 					id="{{item.commentId}}">—— 展开{{item.commentList.length}}条回复▼</text>
 				<!-- 注意:条件渲染和循环渲染在同一个组件的时候条件渲染大部分时候会失效,解决方案:在外面套一层 -->
-				<view wx:if="{{show[item.commentId]}}" class="reply_list"> 
+				<view wx:if="{{show[item.commentId]}}" class="reply_list">
 					<view class="reply_box" wx:for="{{reply_array[item.commentId]}}" wx:key="commentId">
 						<!-- 会飘到上面去,干脆不要了 -->
-						<!-- <image class="reply_avatar" src="{{item.avator}}"></image> -->
+						<view class="reply_avatar_contain">
+							<image class="reply_avatar" src="{{item.avator}}"></image>
+						</view>
 						<view class="reply_info">
 							<text class="reply_nickname">{{item.name}}</text>
-							<text class="reply_text">{{item.content}}</text>
+							<text class="reply_text" wx:if="{{item.tocommentId==item.commentParentId}}">{{item.content}}</text>
+							<view class="reply_text" wx:else>
+								回复<text style="color:rgb(255, 68, 161);margin-left:1vw;font-weight: bolder;">@{{item.toCommentName}} : </text> {{item.content}}
+							</view>
 							<text class="comment_time">{{item.createTime}}</text>
-							<text class="toComment" bindtap="selectCommentToReply" id="{{item.commentId}}">回复</text>
+							<text class="toComment" bindtap="selectCommentToReply" id="{{item.commentId}}" data-parentId="{{item.commentParentId}}">回复</text>
 						</view>
-						<view class="commenet_like" style="margin-top:6vw">
+						<view class="commenet_like" style="margin-top:6vw;">
 							<image wx:if="{{!item.isPraise}}" class="like_img" src="../../asset/image/comment/like.png"
 								bindtap="tapLike_comment" id="{{item.commentId}}"></image>
 							<image wx:else class="like_img" src="../../asset/image/comment/liked.png" bindtap="tapLike_comment"
@@ -119,7 +219,7 @@
 	<view class="editor">
 		<form bindsubmit="onSubmitTap">
 			<input name="yourComment" id="" cols="30" rows="10" class="input" style="color:grey;text-align: center;"
-				type="text" placeholder="留下你的精彩评论" foucs="auto" value="{{addtext}}"></input>
+				type="text" placeholder="留下你的精彩评论" focus="{{focus}}" value="{{addtext}}"></input>
 			<image src="/asset/image/sendAndFeedback/happyFace.png" class="face"></image>
 			<button class="send" form-type="submit" disabled="{{isDisabled}}">发送</button>
 		</form>

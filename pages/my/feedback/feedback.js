@@ -17,7 +17,7 @@ Page({
     addtext: "",
     img: [null, null, null, null],
     haveImg: [false, false, false, false],
-    imgNum: 4,
+    imgNum: 0,
     isDisabled: false,
     contact: "",
   },
@@ -85,7 +85,40 @@ Page({
       }
     })
   },
+  bindDeleteImage: function (e) {
+    console.log(e)
+    let that = this;
+    let index = e.currentTarget.dataset.index; //图片的索引
 
+    // let newImg = that.data.img;
+    // let newHaveImg = that.data.haveImg;
+    // console.log(newImg)
+    // console.log(newHaveImg)
+    // for (let i = index; i < 8; i++) { //更新图片列表
+    //   newImg[i] = that.data.img[i+1];
+    //   newHaveImg[i] = that.data.haveImg[i+1];
+    // }
+
+    let newImg = [null, null, null, null, null, null, null, null, null];
+    let newHaveImg = [false, false, false, false, false, false, false, false, false];
+    for (let i = 0; i < 8; i++) { //更新图片列表
+      if(i<index){
+        newImg[i] = that.data.img[i];
+        newHaveImg[i] = that.data.haveImg[i];
+      }else{
+        newImg[i] = that.data.img[i+1];
+        newHaveImg[i] = that.data.haveImg[i+1];
+      }
+    }
+
+    console.log(newImg);
+    console.log(newHaveImg);
+    that.setData({
+      imgNum: that.data.imgNum - 1,
+      img: newImg,
+      haveImg: newHaveImg,
+    });
+  },
   send: throttle(function (e) {
     console.log(e)
     let that = this;

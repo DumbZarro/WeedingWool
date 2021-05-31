@@ -19,8 +19,12 @@
           <!-- 添加或者刷新 -->
           <image wx:if="{{!haveImg[0]}}" src="../../../asset/image/sendAndFeedback/add.png" class="add"
             bindtap="bindPutImage" data-index="0"></image>
-          <image wx:else src="../../../asset/image/sendAndFeedback/change.png" class="change" bindtap="bindRefreshImage"
-            data-index="0"></image>
+          <view wx:else>
+            <image src="../../../asset/image/sendAndFeedback/change.png" class="change" bindtap="bindRefreshImage"
+              data-index="0"></image>
+            <image src="../../../asset/image/sendAndFeedback/sub2.png" class="sub" bindtap="bindDeleteImage"
+              data-index="0"></image>
+          </view>
           <!-- 底部的图片 -->
           <view class="picture">
             <image src="{{img[0]}}" class="picture_img" mode="aspectFill"></image>
@@ -32,8 +36,14 @@
           <!-- 添加或者刷新 -->
           <image wx:if="{{!haveImg[1]}}" src="../../../asset/image/sendAndFeedback/add.png" class="add"
             bindtap="bindPutImage" data-index="1"></image>
-          <image wx:else src="../../../asset/image/sendAndFeedback/change.png" class="change" bindtap="bindRefreshImage"
-            data-index="1"></image>
+          <view wx:else>
+            <image src="../../../asset/image/sendAndFeedback/change.png" class="change" bindtap="bindRefreshImage"
+              data-index="1"></image>
+            <image src="../../../asset/image/sendAndFeedback/sub2.png" class="sub" bindtap="bindDeleteImage"
+              data-index="1">
+            </image>
+          </view>
+
           <!-- 底部的图片 -->
           <view class="picture">
             <image src="{{img[1]}}" class="picture_img" mode="aspectFill"></image>
@@ -45,8 +55,14 @@
           <!-- 添加或者刷新 -->
           <image wx:if="{{!haveImg[2]}}" src="../../../asset/image/sendAndFeedback/add.png" class="add"
             bindtap="bindPutImage" data-index="2"></image>
-          <image wx:else src="../../../asset/image/sendAndFeedback/change.png" class="change" bindtap="bindRefreshImage"
-            data-index="2"></image>
+          <view wx:else>
+            <image src="../../../asset/image/sendAndFeedback/change.png" class="change" bindtap="bindRefreshImage"
+              data-index="2"></image>
+            <image src="../../../asset/image/sendAndFeedback/sub2.png" class="sub" bindtap="bindDeleteImage"
+              data-index="2">
+            </image>
+          </view>
+
           <!-- 底部的图片 -->
           <view class="picture">
             <image src="{{img[2]}}" class="picture_img" mode="aspectFill"></image>
@@ -58,8 +74,13 @@
           <!-- 添加或者刷新 -->
           <image wx:if="{{!haveImg[3]}}" src="../../../asset/image/sendAndFeedback/add.png" class="add"
             bindtap="bindPutImage" data-index="3"></image>
-          <image wx:else src="../../../asset/image/sendAndFeedback/change.png" class="change" bindtap="bindRefreshImage"
-            data-index="3"></image>
+            <view wx:else>
+            <image src="../../../asset/image/sendAndFeedback/change.png" class="change" bindtap="bindRefreshImage"
+              data-index="3"></image>
+            <image src="../../../asset/image/sendAndFeedback/sub2.png" class="sub" bindtap="bindDeleteImage"
+              data-index="3">
+            </image>
+          </view>
           <!-- 底部的图片 -->
           <view class="picture">
             <image src="{{img[3]}}" class="picture_img" mode="aspectFill"></image>

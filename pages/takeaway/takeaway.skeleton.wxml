@@ -1,0 +1,80 @@
+<!--
+此文件为开发者工具生成，生成时间: 2021/5/31 下午12:04:07
+使用方法：
+在 D:\Code\WeChatProjects\WeedingWool\pages\takeaway\takeaway.wxml 引入模板
+
+```
+<import src="takeaway.skeleton.wxml"/>
+<template is="skeleton" wx-if="{{loading}}" />
+```
+
+在 D:\Code\WeChatProjects\WeedingWool\pages\takeaway\takeaway.wxss 中引入样式
+```
+@import "./takeaway.skeleton.wxss";
+```
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+-->
+<template name="skeleton">
+  <view class="sk-container">
+    <view class="imag_contain">
+      <image class="takeaway_imag sk-image" mode="aspectFit"></image>
+    </view>
+    <view class="nav_bar" style="border: none;">
+      <view class="select_tab" id="1">
+        <text class="goodGoodBody user-font sk-transparent sk-text-14-2857-727 sk-text" style="background-position-x: 50%;">用户</text>
+        <image class="underline sk-image"></image>
+      </view>
+      <view class="select_tab" id="2">
+        <text class="goodGoodBody machine-font sk-transparent sk-text-14-2857-421 sk-text" style="background-position-x: 50%;">机器人</text>
+      </view>
+      <view>
+        <view class="small_button" style="border: none;">
+          <text decode="true" class="sk-transparent sk-opacity">&lt;</text>
+        </view>
+      </view>
+    </view>
+    <scroll-view scroll-y="true" class="list" refresher-enabled="true" refresher-triggered="true">
+      <view class="box" style="border: none;">
+        <view class="box_top">
+          <image class="avatar sk-image" style="border: none;"></image>
+          <view class="info">
+            <text class="nickname sk-transparent sk-text-14-2857-826 sk-text">芋圆</text>
+            <text class="info_time sk-transparent sk-text-14-2857-426 sk-text">2021-05-30 22:27:08</text>
+            <text class="info_text sk-transparent sk-text-14-2857-363 sk-text">世界名画</text>
+            <view>
+              <image class="info_image sk-image" data-src="https://haibobo-1259500678.cos.ap-nanjing.myqcloud.com/8537d2da-2d9e-44e8-925b-0e7390e06ed6.jpg" mode="aspectFill"></image>
+            </view>
+          </view>
+        </view>
+        <view class="box_bottom">
+          <view class="botton_component" id="86">
+            <image class="like_img sk-image"></image>
+            <text class="sk-transparent sk-opacity">0</text>
+          </view>
+          <view class="botton_component" id="86">
+            <image class="comment_img sk-image"></image>
+            <text class="sk-transparent sk-opacity">0</text>
+          </view>
+          <view class="botton_component" id="86">
+            <image class="share_img sk-image"></image>
+            <text class="sk-transparent sk-opacity">0</text>
+          </view>
+        </view>
+      </view>
+      <view class="box" style="border: none;">
+        <view class="box_top">
+          <image class="avatar sk-image" style="border: none;"></image>
+          <view class="info">
+            <text class="nickname sk-transparent sk-text-14-2857-128 sk-text">芋圆</text>
+            <text class="info_time sk-transparent sk-text-14-2857-36 sk-text">2021-05-30 20:06:12</text>
+            <text class="info_text sk-transparent sk-text-14-2857-478 sk-text">或者，hanhanlong可以来段rap吗？@.@</text>
+            <view>
+              <image class="info_image sk-image" data-src="https://haibobo-1259500678.cos.ap-nanjing.myqcloud.com/1757a5a5-77d0-4d5e-a1cf-32c99b553b39.jpg" mode="aspectFill"></image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</template>

@@ -41,12 +41,13 @@ textarea {
 
 .picture_contain{
   float: left;
-  width: 21vw;
+  width: 19vw;
+  margin-right: 3vw;
 }
 
 .picture{
-  width:20vw;
-  height: 20vw;
+  width:18vw;
+  height: 18vw;
   background-color: white;
   /* 外框 */
   overflow: hidden;
@@ -57,13 +58,13 @@ textarea {
   display: flex;
 }
 .picture_img{
-  width: 20vw;
-  height: 20vw;
+  width: 18vw;
+  height: 18vw;
   /* 配合 mode="aspectFill" 使图片不变形*/
   background-size: cover;
 }
 .image_size{
-  margin-left: 47vw;
+  margin-left: 46vw;
   margin-top:1vw;
   font-size: 3vw;
   font-weight: lighter;
@@ -74,16 +75,24 @@ textarea {
 .add{
   height: 14vw;
   width: 14vw;
-  margin-left: 3vw;
-  margin-top:3vw;
+  margin-left: 2vw;
+  margin-top: 2vw;
   position: absolute;
   z-index: 1;
 }
 .change{
   height: 4vw;
   width: 4vw;
-  margin-left: 8vw;
-  margin-top:8vw;
+  margin-left: 7vw;
+  margin-top:7vw;
+  position: absolute;
+  z-index: 1;
+}
+.sub{
+  height: 5vw;
+  width: 5vw;
+  margin-left: 15vw;
+  margin-top: -2vw;
   position: absolute;
   z-index: 1;
 }

@@ -12,7 +12,7 @@ Page({
   data: {
     isRobot: false,
     mode: 1,
-    hot_check: true,
+    hot_check: false,
     pageNum: 1,
     // info_array:null,
     activedIndex: 0,
@@ -20,16 +20,22 @@ Page({
     showComment: false,
     modeselect: false,
     feedbackSelect: null,
+    feedbackParentId: null,
     isDisabled: false,
     addtext: "",
     show: {},
     reply_array: {},
     triggered: true,
+    loading: true,
+    focus: false
   },
 
   onLoad: function (options) {
     let that = this;
     that.getList();
+    // that.opendComment();//调试用
+    // that.getComments();//调试用
+
   },
   onShow: function () {
     if (app.globalData.token == null) {
@@ -100,7 +106,7 @@ Page({
     let that = this;
     // console.log("app token")
     // console.log(app.globalData.token);
-    console.log(that.data.isRobot);
+    // console.log(that.data.isRobot);
     request({
       url: 'https://www.dontstayup.com:8089/collection/getAllCollections',
       method: "GET",
@@ -120,7 +126,8 @@ Page({
       console.log("array=")
       console.log(res.data.data);
       that.setData({ //不要提前在data里预设info_array,渲染可能不会等请求就渲染了空
-        info_array: res.data.data
+        info_array: res.data.data,
+        loading: false,
       })
     }).catch(err => {
       console.log(err)
@@ -129,10 +136,11 @@ Page({
   },
   clickTab(e) { //选择用户/机器人 事件
     let that = this;
-    console.log(e)
+    console.log("点击的id是")
+    console.log(e.currentTarget.id)
     let id = e.currentTarget.id;
     if (id == "1") {
-      console.log("111")
+      // console.log("isRobot=")
       console.log(that.data.isRobot)
       that.setData({ //使用setData才会重新渲染页面
         isRobot: false
@@ -148,7 +156,7 @@ Page({
 
       // that.data.isRobot=true;  //不会重新渲染
     }
-
+    console.log("isRobot=")
     console.log(that.data.isRobot)
     // that.setData({
     //   activedIndex: e.currentTarget.id,
@@ -162,25 +170,33 @@ Page({
     that.setData({
       modeselect: !that.data.modeselect
     })
+    console.log("modeselect=")
     console.log(that.data.modeselect)
   },
   checkboxChange: function (e) {
     let that = this;
     console.log(e)
-    console.log(e.detail.value[0])
-    let value = e.detail.value[0];
-    if (value == "1") { //这时候选的就是第二个选项(时间)
-      that.setData({ //不知道为啥反了,接受的还是数组,反正现在能跑就不管了
-        hot_check: false,
+    console.log("e.currentTarget.id")
+    console.log(e.currentTarget.id)
+    let value = e.currentTarget.id;
+    if (value == "1") { //这时候选的就是第一个选项(时间)
+      that.setData({
         mode: 1, //mode 1 是 时间
-        modeselect: false,
+        modeselect: true, //因为点击按钮也算点击整个组件,会取反,所以设置为true
+        hot_check: false,
       })
+      console.log("modeselect=")
+      console.log(that.data.modeselect)
+      console.log("mode=1 选择 时间")
     } else {
       that.setData({
-        hot_check: true,
         mode: 2,
-        modeselect: false,
+        modeselect: true, //因为点击按钮也算点击整个组件,会取反,所以设置为true
+        hot_check: true,
       })
+      console.log("modeselect=")
+      console.log(that.data.modeselect)
+      console.log("mode=2 选择 热度")
     }
     that.getList(); //刷新列表
   },
@@ -188,7 +204,7 @@ Page({
     let that = this;
     console.log(e)
     let currentUrl = e.currentTarget.dataset.src
-    if(currentUrl==null){
+    if (currentUrl == null) {
       toastException("你要看的图片裂开了")
       return;
     }
@@ -202,10 +218,11 @@ Page({
   opendComment: function (e) {
     let that = this;
     // console.log(e)
+    // console.log("当前点击的评论id是:")
     // console.log(e.currentTarget.id)
     that.setData({
-      // collectionId:e.currentTarget.id
-      collectionId: 1
+      collectionId: e.currentTarget.id
+      // collectionId: 7//调试用
     })
     wx.hideTabBar({})
     that.getComments(that.data.collectionId)
@@ -217,7 +234,7 @@ Page({
   getComments: function () {
     let that = this;
     request({
-      url: 'https://www.dontstayup.com:8089/comment/getComment',
+      url: 'https://www.dontstayup.com:8089/comment/getCommentB',
       method: "GET",
       data: {
         collectionId: that.data.collectionId,
@@ -227,14 +244,15 @@ Page({
         'token': app.globalData.token
       },
     }).then(res => {
-      // console.log("getComment res:");
-      // console.log(res);
+      console.log("getComment res:");
+      console.log(res);
       console.log("comment array=")
       console.log(res.data.data);
       that.setData({ //评论列表的数据
         comment_array: res.data.data,
         show: {} //声明show数组
       })
+      // that.expendComment();//调试用
     })
   },
   closeComment: function () {
@@ -246,9 +264,12 @@ Page({
     wx.showTabBar({})
   },
   expendComment: function (e) {
+    console.log("expendComment res:")
     console.log(e)
     let that = this;
     let commentId = e.currentTarget.id;
+    // let commentId = "33";//测试用
+
     let show_temp = that.data.show;
     let reply_temp = that.data.reply_array;
     show_temp[commentId] = !show_temp[commentId];
@@ -264,7 +285,6 @@ Page({
     // that.getComments()//刷新列表
     console.log(that.data.show);
     console.log(that.data.reply_array);
-    // TODO 展开回复
   },
   onSubmitTap: throttle(function (e) {
     let that = this;
@@ -281,6 +301,7 @@ Page({
         commentParentId: that.getCommentParentId(),
         content: e.detail.value.yourComment,
         createTime: new Date(),
+        toCommentId: that.getToCommentId(),
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded',
@@ -295,6 +316,8 @@ Page({
         that.setData({
           isDisabled: true, //禁止点击发送
           addtext: "", //清空输入框
+          feedbackSelect: null, //  防止评论串位
+          feedbackParentId: null // 防止评论串位
         });
         that.getComments() //刷新列表
         setTimeout(function () {
@@ -308,20 +331,45 @@ Page({
   }, 1000),
   getCommentParentId: function () {
     let that = this;
-    let commentParentId = that.data.feedbackSelect;
-    if (commentParentId == null) {
-      return 0;
+    let ToCommentId = that.data.feedbackSelect;
+    let commentParentId = that.data.feedbackParentId;
+    if (commentParentId == null) { //没有点击
+      return 0; // 以及评论的parentId设置为0
+    } else if (commentParentId == 0) { //点击了一级评论 它的父评论id就是要回复的id
+      return ToCommentId;
     } else {
-      that.data.feedbackSelect = null; //要设置null防止多次评论串位
       return commentParentId;
     }
   },
+  getToCommentId: function () {
+    let that = this;
+    let ToCommentId = that.data.feedbackSelect;
+    let commentParentId = that.data.feedbackParentId;
+    if (ToCommentId == null) { //没有点击
+      return -1; // 如果谁也不回复(一级评论) 就设置为-1
+    } else if (commentParentId == null) { //点击了一级评论
+      return commentParentId;
+    } else {
+      return ToCommentId;
+    }
+
+  },
+  // 按回复获取
   selectCommentToReply: function (e) {
     let that = this;
-    console.log(e.currentTarget.id);
+    console.log("点击回复 res=")
+    console.log(e)
+    // console.log(e.currentTarget.id);
     that.data.feedbackSelect = e.currentTarget.id;
+    that.data.feedbackParentId = e.currentTarget.dataset.parentid;
+    console.log("评论的id");
     console.log(that.data.feedbackSelect);
+    console.log("评论的parentid");
+    console.log(e.currentTarget.dataset.parentid)
     // TODO 弹出键盘输入
+    that.setData({
+      focus: true
+    })
   },
   tapLike_comment: function (e) {
     console.log(e)
